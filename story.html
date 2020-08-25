@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>story</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/story.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+
+    <script>
+        $(function() {
+            $("#header").load("header.html");
+            $("#footer").load("footer.html");
+            document.onscroll = function() {
+                let scrollPerc = '';
+                let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                let scrollBottom = (document.documentElement.scrollHeight ||
+                    document.body.scrollHeight) - document.documentElement.clientHeight;
+                scrollPerc = scrollTop / scrollBottom * 100;
+                console.log(scrollPerc);
+                document.querySelector('.scrollbar').style.width = scrollPerc + '%';
+            }
+            var swiper = new Swiper('.swiper-container', {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                // init: false,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 4,
+                        spaceBetween: 40,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 40,
+                    },
+                }
+            });
+        });
+    </script>
+    <script>
+        $(function() {
+            $(".slider ul li").hide();
+            $(".slider ul li").eq(0).fadeIn();
+            $(".thumb_box").eq(0).addClass("hover");
+
+            $(".list_b").hide();
+            $(".list_b").eq(0).fadeIn();
+
+            $(".thumb_box").click(function() {
+                var i = $(this).index();
+                $(".thumb_box").removeClass("hover");
+                $(".thumb_box").eq(i).addClass("hover");
+                $(".slider ul li").hide();
+                $(".slider ul li").eq(i).fadeIn();
+
+                $(".list_b").hide();
+                $(".list_b").eq(i).fadeIn(); //stop().slideToggle(1000);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="header"></div>
+    <div class="container">
+        <div class="conimg">
+            <div class="text">
+                <h1>story</h1>
+            </div>
+        </div>
+        <section class="section1">
+            <div class="slider">
+                <ul>
+                    <li class="hover">
+                        <div class="textbx">
+                            <h2>THE ORIGINALITY</h2>
+                            <p>게임을 만든다는건 전에 없던 세상을 창조하는 일입니다.<br>그 과정은 쉽지 않습니다. 그러나 우리는 퀄리티와 타협하지 않습니다.</p>
+                        </div>
+                    </li>
+                    <li class="hover">
+                        <div class="textbx">
+                            <h2>THE GAME ART</h2>
+                            <p>게임은 상상의 세계를 그립니다.<br>아이디어 스케치가 게임 속에서 화려하게 펼쳐지기까지 게임 그래픽의 치밀한 설계 과정을 공개합니다.</p>
+                        </div>
+                    </li>
+                    <li class="hover">
+                        <div class="textbx">
+                            <h2>IC ART PROJECT</h2>
+                            <p>게임을 둘러싼 문화적 환경을 깊이 탐구하고<br>그 속에서 크리에이티브를 발견하는 실험적 아트 플랫폼입니다.</p>
+                        </div>
+                    </li>
+
+                    <div class="hc_thumb">
+                        <div class="thumb_box hover">
+                            <span class="txt"></span>
+                        </div>
+                        <div class="thumb_box">
+                            <span class="txt"></span>
+                        </div>
+                        <div class="thumb_box">
+                            <span class="txt"></span>
+                        </div>
+
+                    </div>
+                </ul>
+
+            </div>
+        </section>
+        <ul>
+            <li class="list_b">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="img"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img1"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img2"></div>
+                        </div>
+                        <div class="swiper-slide">
+                             <div class="img3"></div>
+                        </div>
+                        <div class="swiper-slide">
+                             <div class="img4"></div>
+                        </div>
+                        <div class="swiper-slide">
+                             <div class="img5"></div>
+                        </div>
+                        <div class="swiper-slide">Slide 7</div>
+                        <div class="swiper-slide">Slide 8</div>
+                        <div class="swiper-slide">Slide 9</div>
+                        <div class="swiper-slide">Slide 10</div>
+                    </div>
+                </div>
+            </li>
+            <li class="list_b">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="img01"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img02"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img03"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img04"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img05"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img06"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img07"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="list_b">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="img11"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img12"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img13"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img14"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img15"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+    <div id="footer"></div>
+</body></html>

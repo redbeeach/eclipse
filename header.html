@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <style>
+ 
+
+        /*header*/
+        header {
+            position: fixed;
+            height: 0;
+            background: white;
+            width: 100%;
+            margin: 0 auto;
+            z-index: 1111;
+            color: white;
+            opacity: 1;
+            transition: top 0.5s ease-in-out, opacity 0.6s ease;
+        }
+
+        header a {
+            color: #fff;
+        }
+
+        #logo {
+            float: left;
+            position: relative;
+            margin-left: 100px;
+        }
+
+        .header-up {
+            opacity: 0;
+            top: -100px;
+        }
+
+        /*메뉴바*/
+        #menu {
+            width: 100%;
+            margin: 0 auto;
+            font-family: 'NanumSquareEB';
+            padding-top: 30px;
+            z-index: 999;
+            position: fixed;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            transition: top 0.5s ease-in-out, opacity 0.6s ease;
+        }
+
+        #menu>ul {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 50px;
+            color: white;
+            font-size: 19px;
+        }
+
+        #menu>ul:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        #menu>ul>li {
+            float: left;
+            text-align: center;
+            width: 20%;
+            margin: 0 auto;
+            line-height: 40px;
+        }
+
+        .hidden {
+            color: white;
+            visibility: hidden
+        }
+
+        ul.sub {
+            width: 100%;
+            position: relative;
+            display: none;
+            left: 0;
+            _border-right: 1px solid #e5e5e5;
+            font-family: 'NanumSquareB';
+        }
+
+        ul#line {
+            border-left: 1px solid #dddddd;
+        }
+
+        ul.sub:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        ul.sub>li {
+            float: left;
+            width: 100%;
+        }
+
+        ul.sub>li>a {
+            display: block;
+            text-align: center;
+            padding: 5px 10px;
+            color: #000;
+        }
+
+        .t_line {
+            display: inline-block;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .t_line:after {
+            display: block;
+            content: '';
+            border-bottom: solid 3px #4d6205;
+            transform: scaleX(0);
+            transition: transform 250ms ease-in-out;
+        }
+
+        .t_line:hover:after {
+            transform: scaleX(1);
+        }
+
+        #right_menu {
+            position: absolute;
+            right: 100px;
+            margin-top: 10px;
+            top: 0;
+            font-family: 'NanumSquareR';
+            color: white;
+            padding-top: 30px;
+        }
+
+        #right_menu>ul>li {
+            float: left
+        }
+
+        #right_menu>.menu_icon {
+            float: left;
+            display: none;
+            margin-right: -50px;
+        }
+
+
+        /*slide 메뉴바*/
+        #slide_menu {
+            position: fixed;
+            background: url(img/Eclipse_m.png) no-repeat #111;
+            background-position: 100% 95%;
+            background-size: 50%;
+            color: white;
+            display: none;
+            width: 50%;
+            right: 0;
+            height: 100%;
+            z-index: 1111;
+        }
+
+        #slide_menu a {
+            color: #fff;
+        }
+
+        #slide_menu>ul {
+            margin: 20px;
+        }
+
+        #slide_menu>ul>li {
+            padding: 20px;
+            width: 100%;
+            font-size: 18px;
+            font-family: 'NanumSquareB';
+        }
+
+        #slide_menu>ul>li a {
+            color: #fff;
+        }
+
+        .close_bt {
+            position: absolute;
+            left: -50px;
+            padding: 20px;
+            background: #333;
+            width: 50px;
+        }
+
+        .accordion {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-bottom: 1px solid #ced4da;
+            outline: none;
+            background: none;
+            color: white;
+            font-size: 15px;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.4s;
+            font-family: 'NanumSquareEB';
+            font-size: 18px
+        }
+
+        button:hover {
+            color: #131902;
+        }
+
+        .accordion:first-child {
+            border-top: 1px solid #ced4da;
+        }
+
+        .active,
+        .accordion:hover {}
+
+        .accordion:after {
+            float: right;
+            margin-left: 5px;
+            content: '\002B';
+            color: white;
+            font-weight: bold;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .panel {
+            max-height: 0;
+            padding: 0 18px;
+            overflow: hidden;
+            background: none;
+            transition: max-height 0.2s ease-out;
+            font-family: 'NanumSquareB';
+            font-size: 18px;
+        }
+
+        .panel>p {
+            margin-top: 20px;
+            color: #d2d8bd
+        }
+
+        .panel>p:nth-child(1) {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .panel>p:nth-child(2) {
+            margin-bottom: 30px;
+        }
+
+        @media all and (max-width:1610px) {
+            #menu>ul {
+                width: 65%;
+                padding-left: 200px;
+            }
+        }
+
+        @media all and (max-width:1588px) {
+            .footer_m>ul>li:nth-child(1) {
+                margin-left: 2% !important
+            }
+        }
+
+        @media all and (max-width:1500px) {
+            #menu>ul {
+                width: 50%;
+                padding-left: 200px;
+            }
+        }
+
+        @media all and (min-width:768px) and (max-width:1499px) {
+            #menu>ul {
+                display: none;
+            }
+
+            #right_menu {
+                right: 77px !important;
+            }
+
+            #right_menu>ul {
+                display: none;
+            }
+
+            #right_menu>.menu_icon {
+                display: block !important;
+            }
+
+            #logo {
+                margin-left: 50px;
+            }
+
+            .main_col {
+                margin: 0 !important;
+                margin-left: 7% !important;
+            }
+
+            .col {
+                width: 20%;
+                margin-right: 0 !important;
+            }
+
+            .back>.inner>p {
+                font-size: 15px;
+            }
+
+            #brandVisual {
+                height: 644px;
+            }
+
+            #pre {
+                margin-left: -350px;
+            }
+
+            #next {
+                margin-right: -350px;
+            }
+
+        }
+
+        @media screen and (max-width:767px) {
+            #menu>ul {
+                display: none;
+            }
+
+            #right_menu {
+                right: 88px !important;
+            }
+
+            #right_menu>ul {
+                display: none;
+            }
+
+            #logo {
+                margin-left: 25px !important;
+            }
+
+            #right_menu>.menu_icon {
+                display: block !important;
+            }
+
+            #right_menu {
+                margin-right: -30px;
+            }
+        }
+    </style>
+    <script>
+        $(function() {
+
+
+            //menu
+            $("#menu>ul>li").hover(function() {
+                var i = $(this).index();
+                $("ul.sub").stop().fadeIn(400);
+                $("header").css({
+                    "height": "230px"
+                });
+                $("#right_menu").css({
+                    "color": "black"
+                });
+                $("#menu>ul").css({
+                    "color": "#252525"
+                });
+                $("#menu>ul>li>.t_line").css({
+                    "color": "#4d6205"
+                });
+            }, function() {
+                $("ul.sub").stop().fadeOut(100);
+                $("header").css({
+                    "height": "0px"
+                });
+                $("#right_menu").css({
+                    "color": "white"
+                });
+                $("#menu>ul").css({
+                    "color": "white"
+                });
+                $("#menu>ul>li>.t_line").css({
+                    "color": "white"
+                });
+            });
+
+
+            $(".menu_icon").click(function() {
+                $("#slide_menu").stop().show(300);
+            });
+
+            $(".close_bt").click(function() {
+                $("#slide_menu").stop().hide(200);
+            });
+
+
+            $("#slide_menu>ul>li.cong").click(function() {
+                var onCheck = $(this).children("#slide_menu>ul>li>a").hasClass("on");
+
+                if (onCheck) {
+                    $(this).children("#slide_menu>ul>li>a").removeClass("on");
+                    $(this).siblings("ul.slide").hide();
+                } else {
+                    $("#slide_menu>ul>li>a").addClass("on");
+                    $(this).siblings("ul.slide").show();
+                }
+            });
+            //menu 햄버거 슬라이드 업다운
+            var isOn = 0;
+            var current = 10;
+            $("#slide_menu> ul > li ").click(function() {
+                var i = $(this).index();
+                if (isOn == 1) {
+                    current = 10;
+                }
+                console.log("i:" + i + "current:" + current + "isOn:" + isOn);
+                if (current != i) {
+                    $("#m_menu > #m_bg_menu > .m_btm_menu > ul > li > .m_sub").stop().slideUp(function() {
+                        $("#m_menu > #m_bg_menu > .m_btm_menu > ul > li").css({
+                            "background": "url(images/m_menu_down.png) 93% 15px no-repeat",
+                            "background-size": "25px 25px"
+                        });
+                    });
+
+                    $("#m_menu > #m_bg_menu > .m_btm_menu > ul > li > a").eq(i).css({
+                        "color": "#39528a",
+                        "font-weight": "bold",
+                        "font-family": "NanumSquareEB"
+                    });
+
+                    $("#m_menu > #m_bg_menu > .m_btm_menu > ul > li > .m_sub").eq(i).stop().slideDown(function() {
+                        $("#m_menu > #m_bg_menu > .m_btm_menu > ul > li").eq(i).css({
+                            "background": "url(images/m_menu_up.png) 93% 15px no-repeat",
+                            "background-size": "25px 25px"
+                        });
+                        isOn = 2;
+                    });
+                } else {
+                    $("#m_menu > #m_bg_menu > .m_btm_menu > ul > li > .m_sub").stop().slideUp(function() {
+                        $("#m_menu > #m_bg_menu > .m_btm_menu > ul > li").css({
+                            "background": "url(images/m_menu_down.png) 93% 15px no-repeat",
+                            "background-size": "25px 25px"
+                        });
+                        isOn = 1;
+                    });
+                }
+                current = i;
+            });
+        });
+    </script>
+    <script>
+        var didScroll;
+        var lastScrollTop = 0;
+        var delta = 5;
+        var navbarHeight = $('header').outerHeight();
+
+        $(window).scroll(function(event) {
+            if ($(this).width() >= 901)
+                didScroll = true;
+        });
+
+        setInterval(function() {
+            if (didScroll) {
+                hasScrolled();
+                didScroll = false;
+            }
+        }, 250);
+
+        function hasScrolled() {
+            var st = $(this).scrollTop();
+            if (Math.abs(lastScrollTop - st) <= delta) return;
+            if (st > lastScrollTop && st > navbarHeight) {
+                $('header').removeClass('header-down').addClass('header-up');
+            } else {
+                if (st + $(window).height() < $(document).height()) {
+                    $('header').removeClass('header-up').addClass('header-down');
+                }
+            }
+            lastScrollTop = st;
+        }
+    </script>
+    <!--
+    <script>
+        $(function() {
+
+
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+            }
+        });
+    </script>
+-->
+</head>
+
+<body>
+    <header>
+
+        <div id="menu">
+            <div id="logo">
+                <h1>
+                    <a href="index.html"><img src="img/Eclipse.png" alt="콩카페" width="100px"></a>
+                </h1>
+            </div>
+            <ul style="color: white;">
+                <li><a href="sub3.html" class="t_line" style="color: white;">who we are</a>
+                    <ul id="line" class="sub">
+                        <li><a href="sub3.html">기업소개</a></li>
+                        <li class="hidden"><a href="#">.</a></li>
+                    </ul>
+                </li>
+                <li><a href="sub2.html" class="t_line" style="color: white;">what we create</a>
+                    <ul class="sub">
+                        <li><a href="sub2.html">list</a></li>
+                        <li><a href="game1.html">메이플스토리</a></li>
+                        <li><a href="">던전앤파이터</a></li>
+                        <li class="hidden"><a href="#">.</a></li>
+                    </ul>
+                </li>
+                <li><a href="sub-3.html" class="t_line" style="color: white;">media</a>
+                    <ul class="sub">
+                        <li><a href="sub-3.html">뉴스</a></li>
+                        <li class="hidden"><a href="#">.</a></li>
+                    </ul>
+                </li>
+                <li><a href="story.html" class="t_line" style="color: white;">story</a>
+                    <ul class="sub">
+                        <li><a href="story.html">스토리</a></li>
+                    </ul>
+                </li>
+                <li><a href="sub-5.html" class="t_line" style="color: white;">COMMUNITY</a>
+                    <ul class="sub">
+                        <li><a href="sub-5.html">공지사항</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+
+
+<!--
+
+            <div id="right_menu" style="color: white;">
+                <div class="menu_icon">
+                    <a href="#"><img src="img/menu-icon.png" alt="메뉴" width="40px"></a>
+                </div>
+                <ul>
+                    <li><a href="login.html" style="color: #fff">로그인</a></li>
+                    <li>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="join.html" style="color: #fff">회원가입</a></li>
+                </ul>
+            </div>
+-->
+        </div>
+
+
+    </header>
+    <div id="slide_menu">
+        <div class="close_bt">
+            <a href="#">X</a>
+        </div>
+        <ul>
+            <li>
+                <a href="login.html">로그인</a>
+                <a href="#">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</a>
+                <a href="join.html">회원가입</a>
+            </li>
+            <button class="accordion">who we are</button>
+            <div class="panel">
+                <p><a href="sub-1.html">- 기업소개</a></p>
+            </div>
+
+            <button class="accordion">what we create</button>
+            <div class="panel">
+                <p><a href="sub-2.html">- list</a></p>
+                <p><a href="sub-2.html">- 메이플스토리</a></p>
+                <p><a href="sub-2.html">- 던전앤파이터</a></p>
+            </div>
+
+            <button class="accordion">media</button>
+            <div class="panel">
+                <p><a href="sub-3.html">- 뉴스</a></p>
+            </div>
+
+            <button class="accordion">story</button>
+            <div class="panel">
+                <p><a href="sub-4.html">- 스토리</a></p>
+            </div>
+
+            <button class="accordion">COMMUNITY</button>
+            <div class="panel">
+                <p><a href="sub-5.html">- 공지사항</a></p>
+            </div>
+        </ul>
+    </div>
+</body></html>

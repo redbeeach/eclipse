@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>기업소개</title>
+    <link rel="stylesheet" href="css/sub3.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <!-- swiper js -->
+    <script src="js/swiper.min.js"></script>
+    <!--    <script src="js/main.js"></script>-->
+    <!-- gsap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <!-- swiper css -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+        $(function() {
+            $("#header").load("header.html");
+            new WOW().init();
+
+            $(document).ready(function() {
+                // $fn.scrollSpeed(step, speed, easing);
+                jQuery.scrollSpeed(200, 800);
+            });
+
+            // Custom scrolling speed with jQuery
+            // Source: github.com/ByNathan/jQuery.scrollSpeed
+            // Version: 1.0.2
+
+            (function($) {
+
+                jQuery.scrollSpeed = function(step, speed, easing) {
+
+                    var $document = $(document),
+                        $window = $(window),
+                        $body = $('html, body'),
+                        option = easing || 'default',
+                        root = 0,
+                        scroll = false,
+                        scrollY,
+                        scrollX,
+                        view;
+
+                    if (window.navigator.msPointerEnabled)
+
+                        return false;
+
+                    $window.on('mousewheel DOMMouseScroll', function(e) {
+
+                        var deltaY = e.originalEvent.wheelDeltaY,
+                            detail = e.originalEvent.detail;
+                        scrollY = $document.height() > $window.height();
+                        scrollX = $document.width() > $window.width();
+                        scroll = true;
+
+                        if (scrollY) {
+
+                            view = $window.height();
+
+                            if (deltaY < 0 || detail > 0)
+
+                                root = (root + view) >= $document.height() ? root : root += step;
+
+                            if (deltaY > 0 || detail < 0)
+
+                                root = root <= 0 ? 0 : root -= step;
+
+                            $body.stop().animate({
+
+                                scrollTop: root
+
+                            }, speed, option, function() {
+
+                                scroll = false;
+
+                            });
+                        }
+
+                        if (scrollX) {
+
+                            view = $window.width();
+
+                            if (deltaY < 0 || detail > 0)
+
+                                root = (root + view) >= $document.width() ? root : root += step;
+
+                            if (deltaY > 0 || detail < 0)
+
+                                root = root <= 0 ? 0 : root -= step;
+
+                            $body.stop().animate({
+
+                                scrollLeft: root
+
+                            }, speed, option, function() {
+
+                                scroll = false;
+
+                            });
+                        }
+
+                        return false;
+
+                    }).on('scroll', function() {
+
+                        if (scrollY && !scroll) root = $window.scrollTop();
+                        if (scrollX && !scroll) root = $window.scrollLeft();
+
+                    }).on('resize', function() {
+
+                        if (scrollY && !scroll) view = $window.height();
+                        if (scrollX && !scroll) view = $window.width();
+
+                    });
+                };
+
+                jQuery.easing.default = function(x, t, b, c, d) {
+
+                    return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+                };
+
+            })(jQuery);
+        });
+    </script>
+    <script>
+        $(function() {
+            var slider = new Swiper(".swiper-container", {
+                slidesPerView: 'auto',
+                spaceBetween: 150,
+                centeredSlides: true,
+                mousewheel: true
+            })
+
+            slider.on('slideChange', function() {
+                TweenMax.to('.slide-text span', .2, {
+                    y: '-100px',
+                })
+                TweenMax.to('.slide-number span', .2, {
+                    x: '-130px',
+                })
+                TweenMax.to('.swiper-slide-active', .5, {
+                    scale: .85
+                })
+            })
+
+            slider.on('slideChangeTransitionEnd', function() {
+
+                TweenMax.to('.slide-text span', .2, {
+                    y: 0,
+                    delay: .5
+                })
+                TweenMax.to('.slide-text span', 0, {
+                    y: '100px',
+                })
+
+                TweenMax.to('.slide-number span', .2, {
+                    x: 0,
+                    delay: .7
+                })
+                TweenMax.to('.slide-number span', 0, {
+                    x: '140px',
+                })
+
+                TweenMax.to('.swiper-slide-active', .5, {
+                    scale: 1,
+                    ease: Power4.easeOut,
+                })
+
+                TweenMax.to('.swiper-slide-active .slide-text', 0, {
+                    autoAlpha: 1
+                })
+                TweenMax.to('.swiper-slide-active .slide-number', 0, {
+                    autoAlpha: 1
+                })
+
+                TweenMax.to('.swiper-slide-next .slide-text', 0, {
+                    autoAlpha: 0
+                })
+                TweenMax.to('.swiper-slide-prev .slide-text', 0, {
+                    autoAlpha: 0
+                })
+
+                TweenMax.to('.swiper-slide-next .slide-number', 0, {
+                    autoAlpha: 0
+                })
+                TweenMax.to('.swiper-slide-prev .slide-number', 0, {
+                    autoAlpha: 0
+                })
+            })
+
+            TweenMax.to('.swiper-slide-next .slide-text', 0, {
+                autoAlpha: 0
+            })
+            TweenMax.to('.swiper-slide-prev .slide-text', 0, {
+                autoAlpha: 0
+            })
+
+            TweenMax.to('.swiper-slide-next .slide-number', 0, {
+                autoAlpha: 0
+            })
+            TweenMax.to('.swiper-slide-prev .slide-number', 0, {
+                autoAlpha: 0
+            })
+
+            TweenMax.to('.swiper-slide', 0, {
+                scale: .85,
+            })
+
+            TweenMax.to('.swiper-slide-active', 0, {
+                scale: 1,
+            })
+
+        });
+    </script>
+    <script>
+        $(function() {
+            $(".video4").hide();
+            $(".video4").eq(0).fadeIn();
+            $(".se4 li").eq(0).addClass("hover");
+
+            $(".se4 li").click(function() {
+
+                var i = $(this).index();
+                $(".se4 li").removeClass("hover");
+                $(".se4 li").eq(i).addClass("hover");
+                $(".video4").hide();
+                $(".video4").eq(i).fadeIn();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="header"></div>
+    <div class="conimg">
+        <h2 class="wow fadeIn" data-wow-duration="2s">기업소개</h2>
+    </div>
+    <div class="scroll_line"></div>
+    <div class="container">
+
+        <section class="section1">
+            <div class="con1">
+                <div class="se1textbx">
+                    <div class="textbx wow fadeInLeft" data-wow-duration="5s">
+                        <h2>즐거움으로 연결된<br>새로운세상,이클립스</h2>
+                        <p>세상 모두가 즐거움으로 연결되는 새로운 미래, <br> 이클립스는 끊임없이 꿈꾸며 도전을 멈추지 않을 것입니다.</p>
+                    </div>
+                </div>
+                <div class="imgbx">
+                    <div class="img10"></div>
+                </div>
+            </div>
+        </section>
+        <section class="section2">
+            <div class="se1">
+                <div class="con2">
+                </div>
+                <div class="textbx22">
+                    <div class="textbx2 wow fadeInLeft" data-wow-duration="5s">
+                        <h2>CEO'S MESSAGE</h2>
+                        <p>앞선 기술,끊임없는 도전, 정도 경영으로 <br>고객과 함께 최고의 가치를 실현합니다.</p>
+                        <p>Global CEO/CCO NAME</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section3">
+            <div class="textbx3">
+                <h2>E & L CENTER</h2>
+                <p>즐거움의 가치를 창출하는곳,<br>이클립스가 만들어 나갈 새로운 세상으로 이르는 꿈의 관문입니다.</p>
+            </div>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <div class="slide-number">
+                            <p><span>001</span></p>
+                        </div>
+                        <div class="slide-text">
+                            <h4><span>company</span></h4>
+                        </div>
+                        <div class="slide-img"></div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="slide-number">
+                            <p><span>002</span></p>
+                        </div>
+                        <div class="slide-text">
+                            <h4><span>company</span></h4>
+                        </div>
+                        <div class="slide-img"></div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="slide-number">
+                            <p><span>003</span></p>
+                        </div>
+                        <div class="slide-text">
+                            <h4><span>company</span></h4>
+                        </div>
+                        <div class="slide-img"></div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="slide-number">
+                            <p><span>004</span></p>
+                        </div>
+                        <div class="slide-text">
+                            <h4><span>company</span></h4>
+                        </div>
+                        <div class="slide-img"></div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="slide-number">
+                            <p><span>005</span></p>
+                        </div>
+                        <div class="slide-text">
+                            <h4><span>company</span></h4>
+                        </div>
+                        <div class="slide-img"></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section class="section4">
+           <div class="textbx">
+            <h1>CORE VALUE</h1>
+            <ul class="se4">
+
+                <li class="hover">
+                    <h3>INTEGRITY</h3>
+                    <span>퀄리티를 향한 진정성</span>
+                    <p>끊임없이 고민하고 다듬는 과정이<br>퀄리티를 만듭니다. <br>사람들을 감동시킬 때까지 진지하게 임합니다.</p>
+                </li>
+                <li>
+                    <h3>PASSION</h3>
+                    <span>새로운 시도를 멈추지 않는 열정</span>
+                    <p>우리에게 실현 불가능한 세계는 없습니다.<br>창의를 향한 헌신과 열정으로<br>무한한 세계를 창조합니다.</p>
+                </li>
+                <li>
+                    <h3>LEVER ENDING</h3>
+                    <span>즐거운 세상을 만들기 위한 끊임없는 도전</span>
+                    <p>미래는 새로운 생각에서 출발합니다.<br>즐거움으로 연결된 세상을 만들기 위해<br>도전을 멈추지 않습니다.</p>
+                </li>
+            </ul>
+            </div>
+
+            <div class="video4 hover">
+                <iframe width="1000" height="500" src="https://www.youtube.com/embed/MuXdEiKAfk8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video4 hover">
+                <iframe width="1000" height="500" src="https://www.youtube.com/embed/l9o33uBi40U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video4 hover">
+                <iframe width="1000" height="500" src="https://www.youtube.com/embed/MuXdEiKAfk8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+    </div>
+
+</body></html>

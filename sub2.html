@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>game!!</title>
+    <link rel="stylesheet" href="css/sub2.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        $(function() {
+            $(".bx1").mouseleave(
+                function() {
+                    $(this).removeClass("hover");
+                }
+            )
+            $("#header").load("header.html");
+            new WOW().init();
+
+            $(document).ready(function() {
+                // $fn.scrollSpeed(step, speed, easing);
+                jQuery.scrollSpeed(200, 800);
+            });
+
+            // Custom scrolling speed with jQuery
+            // Source: github.com/ByNathan/jQuery.scrollSpeed
+            // Version: 1.0.2
+
+            (function($) {
+
+                jQuery.scrollSpeed = function(step, speed, easing) {
+
+                    var $document = $(document),
+                        $window = $(window),
+                        $body = $('html, body'),
+                        option = easing || 'default',
+                        root = 0,
+                        scroll = false,
+                        scrollY,
+                        scrollX,
+                        view;
+
+                    if (window.navigator.msPointerEnabled)
+
+                        return false;
+
+                    $window.on('mousewheel DOMMouseScroll', function(e) {
+
+                        var deltaY = e.originalEvent.wheelDeltaY,
+                            detail = e.originalEvent.detail;
+                        scrollY = $document.height() > $window.height();
+                        scrollX = $document.width() > $window.width();
+                        scroll = true;
+
+                        if (scrollY) {
+
+                            view = $window.height();
+
+                            if (deltaY < 0 || detail > 0)
+
+                                root = (root + view) >= $document.height() ? root : root += step;
+
+                            if (deltaY > 0 || detail < 0)
+
+                                root = root <= 0 ? 0 : root -= step;
+
+                            $body.stop().animate({
+
+                                scrollTop: root
+
+                            }, speed, option, function() {
+
+                                scroll = false;
+
+                            });
+                        }
+
+                        if (scrollX) {
+
+                            view = $window.width();
+
+                            if (deltaY < 0 || detail > 0)
+
+                                root = (root + view) >= $document.width() ? root : root += step;
+
+                            if (deltaY > 0 || detail < 0)
+
+                                root = root <= 0 ? 0 : root -= step;
+
+                            $body.stop().animate({
+
+                                scrollLeft: root
+
+                            }, speed, option, function() {
+
+                                scroll = false;
+
+                            });
+                        }
+
+                        return false;
+
+                    }).on('scroll', function() {
+
+                        if (scrollY && !scroll) root = $window.scrollTop();
+                        if (scrollX && !scroll) root = $window.scrollLeft();
+
+                    }).on('resize', function() {
+
+                        if (scrollY && !scroll) view = $window.height();
+                        if (scrollX && !scroll) view = $window.width();
+
+                    });
+                };
+
+                jQuery.easing.default = function(x, t, b, c, d) {
+
+                    return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+                };
+
+            })(jQuery);
+        });
+    </script>
+</head>
+
+<body>
+    <div id="header"></div>
+    <div class="container">
+        <div class="textbx wow fadeIn" data-wow-duration="5s">
+            <h2>what we create</h2>
+            <div class="scroll_line"></div>
+        </div>
+        <section class="conten">
+            <div class="bx1">
+                <div class="logo01 logo_g"></div>
+                <img src="img/hoyoung-holiday-wallpapers-mobile-1440x2560.jpg" alt="메이플스토리">
+                <div class="hover">
+
+                    <p>모험과 재미가 가득한 2D<br> 횡스크롤 MMORPG</p>
+                    <div class="ho1">
+                        <a href="game1.html" class="btn">VIEW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="bx1 bx0">
+                <div class="logo1 logo_g"></div>
+                <img src="img/fifa19-hero-medium-tophero-7x2-xl.png.adapt.crop16x9.320w.png" alt="피파온라인4">
+                <div class="hover">
+                    <p>축구, 그 이상을 경험할<br> 수 있는 최고의 방법</p>
+                    <div class="ho1">
+                        <a href="" class="btn">VIEW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="bx1">
+                <div class="logo2 logo_g"></div>
+                <img src="img/df.jpg" alt="던전앤파이터">
+                <div class="hover">
+                    <p>짜릿한 손맛, 독보적인 액션 쾌감!</p>
+                    <div class="ho1">
+                        <a href="" class="btn">VIEW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="bx1">
+                <div class="logo3 logo_g"></div>
+                <img src="img/kat.jpg" alt="카트라이더">
+                <div class="hover">
+                    <p>새로운 레이싱 무대 카멜롯 테마 업데이트</p>
+                    <div class="ho1">
+                        <a href="" class="btn">VIEW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="bx1 bx0">
+                <div class="logo4 logo_g"></div>
+                <img src="img/bb.png" alt="바람의나라">
+                <div class="hover">
+                    <p>축구, 그 이상을 경험할<br> 수 있는 최고의 방법</p>
+                    <div class="ho1">
+                        <a href="" class="btn">VIEW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="bx1">
+                <div class="logo5 logo_g"></div>
+                <img src="img/creazy.jpg" alt="크레이지아케이드">
+                <div class="hover">
+                    <p>짜릿한 손맛, 독보적인 액션 쾌감!</p>
+                    <div class="ho1">
+                        <a href="" class="btn">VIEW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="bx1">
+                <div class="logo6 logo_g"></div>
+                <img src="img/fps.jpg" alt="서든어택">
+                <div class="hover">
+                    <p>새로운 레이싱 무대 카멜롯 테마 업데이트</p>
+                    <div class="ho1">
+                        <a href="" class="btn">VIEW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="bx1 bx0">
+                <div class="logo7 logo_g"></div>
+                <img src="img/ahreum-jeon-2018-ndc.jpg" alt="메이플스토리2" style="height: 100%;">
+                <div class="hover">
+                    <p>축구, 그 이상을 경험할<br> 수 있는 최고의 방법</p>
+                    <div class="ho1">
+                        <a href="" class="btn">VIEW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="bx1">
+                <div class="logo8 logo_g"></div>
+                <img src="img/over.jpg" alt="오버워치">
+                <div class="hover">
+                    <p>짜릿한 손맛, 독보적인 액션 쾌감!</p>
+                    <div class="ho1">
+                        <a href="" class="btn">VIEW</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body></html>
