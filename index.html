@@ -4,379 +4,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-    <title>이클립스</title>
     <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
     <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-icon-192x192.png">
-    <link rel="stylesheet" href="css/styles.css">
+    <title>eclipse</title>
+    <link rel="stylesheet" href="css/styless.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/swiper.min.css">
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/swiper.min.js"></script>
     <script>
         $(function() {
-            $(".popup-btn").click(function(e) {
-                e.preventDefault();
-                var linkID = this.hash.replace("#", "");
-                $(".modal").each(function() {
-                    var modalID = $(this).attr("id");
-                    if (linkID === modalID) {
-                        $(this).fadeIn(200);
-                        $("body, html").addClass("modal-open");
-                        $(".modal-backdrop").addClass("in");
-                        $(this).addClass("in");
-                    } else {
-                        $(this).fadeOut();
-                        $(this).removeClass("in");
-                    }
-                });
-            });
-            $("body, button.close, .modal-footer button.btn").click(function() {
-                $("body, html").removeClass("modal-open");
-                $(".modal-backdrop").removeClass("in");
-                $(".modal").fadeOut();
-                $(".modal").removeClass("in");
-            });
-            $(".modal-content, .popup-btn, .modal-header .close, .modal-footer .btn").click(
-                function(e) {
-                    e.stopPropagation();
-                }
-            );
-            $(".popup-btn1").click(function(e) {
-                e.preventDefault();
-                var linkID = this.hash.replace("#", "");
-                $(".modal1").each(function() {
-                    var modalID = $(this).attr("id");
-                    if (linkID === modalID) {
-                        $(this).fadeIn(200);
-                        $("body, html").addClass("modal-open1");
-                        $(".modal-backdrop1").addClass("in");
-                        $(this).addClass("in");
-                    } else {
-                        $(this).fadeOut();
-                        $(this).removeClass("in");
-                    }
-                });
-            });
-            $("body, button.close, .modal-footer button.btn").click(function() {
-                $("body, html").removeClass("modal-open1");
-                $(".modal-backdrop1").removeClass("in");
-                $(".modal1").fadeOut();
-                $(".modal1").removeClass("in");
-            });
-            $(".modal-content1, .popup-btn1, .modal-header1 .close1, .modal-footer1 .btn1").click(
-                function(e) {
-                    e.stopPropagation();
-                }
-            );
-            $(".popup-btn2").click(function(e) {
-                e.preventDefault();
-                var linkID = this.hash.replace("#", "");
-                $(".modal2").each(function() {
-                    var modalID = $(this).attr("id");
-                    if (linkID === modalID) {
-                        $(this).fadeIn(200);
-                        $("body, html").addClass("modal-open2");
-                        $(".modal-backdrop2").addClass("in");
-                        $(this).addClass("in");
-                    } else {
-                        $(this).fadeOut();
-                        $(this).removeClass("in");
-                    }
-                });
-            });
-            $("body, button.close, .modal-footer button.btn").click(function() {
-                $("body, html").removeClass("modal-open2");
-                $(".modal-backdrop2").removeClass("in");
-                $(".modal2").fadeOut();
-                $(".modal2").removeClass("in");
-            });
-            $(".modal-content2, .popup-btn2, .modal-header2 .close2, .modal-footer2 .btn2").click(
-                function(e) {
-                    e.stopPropagation();
-                }
-            );
-        });
-    </script>
-
-    <script>
-        $(function() {
             $("#header").load("header.html");
+
             new WOW().init();
-            
-                        (function($) {
 
-                jQuery.scrollSpeed = function(step, speed, easing) {
+            $(".solution-wrap .article").on("mouseenter focus", function() {
+                $(this).addClass("on").siblings().removeClass("on");
+            }).on("mouseleave focusout", function() {
+                $(this).first().trigger("mouseenter");
+            }).first().trigger("mouseenter");
 
-                    var $document = $(document),
-                        $window = $(window),
-                        $body = $('html, body'),
-                        option = easing || 'default',
-                        root = 0,
-                        scroll = false,
-                        scrollY,
-                        scrollX,
-                        view;
-
-                    if (window.navigator.msPointerEnabled)
-
-                        return false;
-
-                    $window.on('mousewheel DOMMouseScroll', function(e) {
-
-                        var deltaY = e.originalEvent.wheelDeltaY,
-                            detail = e.originalEvent.detail;
-                        scrollY = $document.height() > $window.height();
-                        scrollX = $document.width() > $window.width();
-                        scroll = true;
-
-                        if (scrollY) {
-
-                            view = $window.height();
-
-                            if (deltaY < 0 || detail > 0)
-
-                                root = (root + view) >= $document.height() ? root : root += step;
-
-                            if (deltaY > 0 || detail < 0)
-
-                                root = root <= 0 ? 0 : root -= step;
-
-                            $body.stop().animate({
-
-                                scrollTop: root
-
-                            }, speed, option, function() {
-
-                                scroll = false;
-
-                            });
-                        }
-
-                        if (scrollX) {
-
-                            view = $window.width();
-
-                            if (deltaY < 0 || detail > 0)
-
-                                root = (root + view) >= $document.width() ? root : root += step;
-
-                            if (deltaY > 0 || detail < 0)
-
-                                root = root <= 0 ? 0 : root -= step;
-
-                            $body.stop().animate({
-
-                                scrollLeft: root
-
-                            }, speed, option, function() {
-
-                                scroll = false;
-
-                            });
-                        }
-
-                        return false;
-
-                    }).on('scroll', function() {
-
-                        if (scrollY && !scroll) root = $window.scrollTop();
-                        if (scrollX && !scroll) root = $window.scrollLeft();
-
-                    }).on('resize', function() {
-
-                        if (scrollY && !scroll) view = $window.height();
-                        if (scrollX && !scroll) view = $window.width();
-
-                    });
-                };
-
-                jQuery.easing.default = function(x, t, b, c, d) {
-
-                    return -c * ((t = t / d - 1) * t * t * t - 1) + b;
-                };
-
-            })(jQuery);
+            $(".accCont").on("mouseenter focus", ".col", function() {
+                $.$(this).addClass("active").siblings().removeClass("active");
+            }).on("mouseleave blur", function() {
+                $.$(this).find(".col").first().trigger("mouseenter");
+            }).find(".col").first().trigger("mouseenter");
         });
     </script>
+
 </head>
 
 <body>
     <div id="header"></div>
-    <div class="waper">
-
-        <div class="slide imgb">
-            <div class="textbx wow animated fadeIn" data-wow-duration="2s">
-                <div class="textb1">
-                    <h1>ECLIPSE</h1>
-                    <p>끊임없는 도전과 열정으로 창조한 세계안에서<br>무한한 즐거움으로 연결되는것,이클립스가 꿈꾸는 미래입니다.</p>
-                </div>
-                <a href="#modal" class="popup-btn btn10">Click Me</a>
-            </div>
-
-
-            <div id="modal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-
-                        </div>
-                        <div class="modal-body contens">
-                            <div class="context wow fadeIn" data-wow-duration="2s">
-                                <h2 class="btn-shine">지식과 지식의 융합</h2>
-                                <p>1994년 설립된 이클립스는 탄탄한 개발력과 항상 ‘최초’를 추구하고 실현해 낸 크리에이티브를 바탕으로 대한민국 온라인 게임 산업을 선도해 온 글로벌 게임업체입니다.</p>
-                            </div>
-                            <div class="conimg wow fadeInLeft" data-wow-duration="2s">
-                                <img src="img/7.jpg" alt="">
-                            </div>
-                            <div class="contextright">
-                                <p>세계 최초의 그래픽 온라인 게임으로 평가되는 ‘바람의나라’를 선보이며 그래픽 온라인 게임의 장을 열었으며, 2001년 온라인 게임에 부분유료화(Free to Play)라는 비즈니스 모델을 최초로 도입, 새로운 비즈니스 모델을 제시했습니다. </p>
-                            </div>
-                            <div class="imgbx">
-                                <div class="img1">
-                                    <div class="img01"></div>
-                                    <span>바람의나라 최초 모바일 출시 <br>그리웠던 그순간 MMORPG의 재미를 즐겨보기</span>
-                                    <a href="" class="btn0">view</a>
-                                </div>
-                                <div class="img2">
-                                    <div class="img02"></div>
-                                    <span>구버전 그래픽 모드 <br>신버전의 재미에 구버전의 감성을 더하다<br> 신버전과 구버전 그래픽을 선택해서 즐겨보기</span>
-                                    <a href="" class="btn1">view</a>
-                                </div>
-                            </div>
-                            <div class="contenlast">
-                                <h3>이어 ‘카트라이더’, ‘메이플스토리’, ‘마비노기’, ‘던전앤파이터’, ‘서든어택’ 등 새로운 시도를 담은 우수한 게임 콘텐츠를 서비스하며 넥슨만의 창조적인 DNA를 구축했으며,
-                                    다양한 게임들을 성공적으로 서비스하며 세계 게임 시장에서 게임IP(Intellectual Property, 지식재산권)개발 및 퍼블리싱의 중추 역할을 하고 있습니다.</h3>
-                            </div>
-                            <div class="imgbx">
-                                <div class="img11">
-                                    <img src="img/4320x1080.png" alt="">
-                                    <span>PC인기 레이싱게임,모바일에서 만나다 손 끝에서 전해지는 엔진과 다이나믹한 드리프트 그리고 짜릿한 속도감</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn">Close</button>
+    <div id="wrap" class="mainWrap">
+        <div id="contentsWrap">
+            <div class="container">
+                <div class="conimg">
+                    <div class="context">
+                        <div class="contx">
+                            <h2 class="text">eclipse</h2>
+                            <p class="text">끊임없는 도전과 열정으로 창조한 세계안에서<br>무한한 즐거움으로 연결되는것,이클립스가 꿈꾸는 미래입니다.</p>
                         </div>
                     </div>
                 </div>
+                <div class="scroll_line"></div>
             </div>
-        </div>
-
-        <div class="slide imgc">
-            <div class="textbx1 wow animated fadeIn" data-wow-duration="1s">
-                <div class="textb2">
-                    <h1>창의로 이어지는 기술</h1>
-                    <p>진지함과 헌신을 바탕으로 만들어진 이클립스만의 기술은 즐거움을위한<br>창의적 도구가 되어 테크놀로지의 혁신과 과학적 진보를 향해 나아가고 있습니다.</p>
-                </div>
-                <a href="#modal1" class="popup-btn1 btn9">Click Me</a>
-            </div>
-
-
-            <div id="modal1" class="modal1 fade1">
-                <div class="modal-dialog1">
-                    <div class="modal-content1">
-                        <div class="modal-header1">
-                            <button type="button" class="close1"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                        </div>
-                        <div class="modal-body1 contens1">
-                            <div class="context1 wow fadeIn" data-wow-duration="2s">
-                                <h2 class="btn-shine">창의로 이어지는 기술</h2>
-                                <p>
-                                    다양한 지식의 공유와 융합은 기술의 혁신을 일으키고 즐거운 세상을 만드는 창의의 밑거름이 됩니다. 이클립스는 콘텐츠 창작과 기술의 진보를 위해 첨단 연구와 인재 확보에 투자를 아끼지 않고 있습니다.
-                                </p>
-                            </div>
-                            <div class="conimg wow fadeInLeft" data-wow-duration="2s">
-                                <img src="img/AI.jpg" alt="">
-
-                                <div class="contextright1">
-                                    <p>세계 최초의 그래픽 온라인 게임으로 평가되는 <br>‘바람의나라’를 선보이며 그래픽 온라인 게임의 장을 열었으며,<br> 2001년 온라인 게임에 부분유료화(Free to Play)라는 <br>비즈니스 모델을 최초로 도입, 새로운 비즈니스 모델을 제시했습니다. </p>
+            <!-- [s] Solutions -->
+            <div class="section-solutions">
+                <div class="inner-wrap">
+                    <div class="tit-area">
+                        <h1 class="text1">The Number 1 Logistics Innovation Partner</h1>
+                        <p class="text1">물류센터 설계 및 컨설팅에서부터 입고, 재고관리, 출고에 이르는 물류센터 전 과정을 제어하고 관리하는 <br>소프트웨어기술(WMS/WCS)과 자동화설비(MHE)를 개별 또는 통합 공급하는 System Integrator 입니다.</p>
+                    </div>
+                    <div class="solution-wrap cb">
+                        <a href="/kr/solutions/solutions-02/" class="article solution1">
+                            <div class="inner">
+                                <h2 class="tit">지식 &amp; 지식의융합</h2>
+                                <div class="cnt">
+                                    <p>물류 운영 현황 진단(물류 거점, 프로세스, 재고관리 외)<br>물류 프로세스 최적화 및 자동화 제언</p>
+                                    <ul>
+                                        <li>물류 전 단계 진단 및 운영전략</li>
+                                        <li>운영 및 물동량 Data 분석, Simulation 통한 개선 방향 도출</li>
+                                        <li>물류자동화, 운영, 조직 및 성과관리 마스터플랜</li>
+                                    </ul>
+                                    <span class="btn-more"><em>Learn more</em></span>
                                 </div>
                             </div>
-                            <div class="imgbx">
-                                <div class="img1">
-                                    <div class="img04"></div>
-                                    <span class="text">
-                                        엔씨는 새롭고 의미 있는 가치를 창출하기 위한 도구로 <br class="w1776">인공지능을 주목해 왔고 연구에 매진하고 있습니다. <br>2011년부터 AI를 위한 별도의 연구 조직을 마련해 <br class="w1776">AI센터에서는 게임 AI, 음성 인식∙합성, 컴퓨터 비전 기술을, <br class="w1776">NLP센터에서는 자연어 처리, 지식 공학을 연구하고 있습니다. <br>당장 눈앞의 문제를 해결하기 위한 연구 개발을 넘어 <br class="w1776">근본적인 혁신과 변화를 만드는 AI를 꿈꾸고 있습니다.
-                                    </span>
+                        </a>
+                        <a href="/kr/solutions/solutions-03/" class="article solution2">
+                            <div class="inner">
+                                <h2 class="tit">창의로 이어지는 기술</h2>
+                                <div class="cnt">
+                                    <p>보관 / 분류 / 피킹 / 이송 시스템</p>
+                                    <ul>
+                                        <li>물류센터 부분 또는 전체 자동화 설계 및 최적 Layout 및 설비 구성</li>
+                                        <li>최적 설비/시스템 조달 및 설치/구현</li>
+                                        <li>레거시 시스템과 자동화 시스템 제어의 통합 관리 구현</li>
+                                    </ul>
+                                    <span class="btn-more"><em>Learn more</em></span>
                                 </div>
                             </div>
-                            <div class="contenlast">
-                                <h3 class="text">
-                                    게임 사운드의 새 기준을 세워 온 엔씨의 도전 뒤에는 궁극의 퀄리티를 만들기 위한 다양한 실험과 노력이 있습니다.음향, 음악 그리고 게임 속 대사 등 사운드 기획부터 폴리 아트, 연주, 음성 연기를 통한 레코딩과 믹싱 과정, 게임의 인터랙티브 사운드와 미디어 사운드에 이르기까지 사운드 개발의 모든 과정은 엔씨의 사운드센터에서 완성됩니다.정교한 사운드 디자인과 엔지니어링이 결합된 오디오 기술로전에 없는 신선한 청각적 감동을 만들어가는 중입니다.
-                                </h3>
-                            </div>
-                            <div class="imgbx">
-                                <div class="img11">
-                                    <img src="img/sound.png" alt="">
+                        </a>
+                        <a href="/kr/solutions/solutions-04/" class="article solution3 on">
+                            <div class="inner">
+                                <h2 class="tit">즐거움으로 연결된 세계</h2>
+                                <div class="cnt">
+                                    <p>WES / WMS / WCS / SMS</p>
+                                    <ul>
+                                        <li>Warehouse Execution System</li>
+                                        <li>Warehouse Mgmt. System</li>
+                                        <li>Warehouse Control System</li>
+                                        <li>Sorter Mgmt. System</li>
+                                    </ul>
+                                    <span class="btn-more"><em>Learn more</em></span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer1">
-                            <button type="button" class="btn">x</button>
-                        </div>
+                        </a>
+                        <a href="/kr/solutions/solutions-05/" class="article solution4">
+                            <div class="inner">
+                                <h2 class="tit">기술 지원</h2>
+                                <div class="cnt">
+                                    <p>Software 유지보수 / Hardware 유지보수</p>
+                                    <ul>
+                                        <li>24/7/365 대응 체계</li>
+                                        <li>Maintenance Service 제공</li>
+                                    </ul>
+                                    <span class="btn-more"><em>Learn more</em></span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-
-
-        <div class="slide imgd">
-            <div class="textbx wow animated fadeIn" data-wow-duration="3s">
-                <div class="textb">
-                    <h2>즐거움으로 연결된 세계</h2>
-                    <p>
-                        끊임없는 도전과 열정으로 창조한 세계 안에서 <br>무한한 즐거움으로 연결되는 것, 이클립스가 꿈꾸는 미래입니다.
-                    </p>
-                </div>
-                <a href="#modal2" class="popup-btn2 btn10">Click Me</a>
-            </div>
-
-
-            <div id="modal2" class="modal2 fade2">
-                <div class="modal-dialog2">
-                    <div class="modal-content2">
-                        <div class="modal-header2">
-                            <button type="button" class="close2"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
-                        </div>
-                        <div class="modal-body2 contens2">
-                            <div class="context2 wow fadeIn" data-wow-duration="2s">
-                                <h2 class="btn-shine">즐거움으로 연결된 세계</h2>
-                                <p>누군가의 자유로운 상상이 창의적 기술을 만나 새로운 세상을 창조하고 그 안에 수많은 사람들이 모여 즐거움을 경험하고 나누며 서로 연결되는것. 이클립스가 꿈꾸는 미래입니다.</p>
-                            </div>
-                            <div class="imgbx2">
-                                <div class="conimg wow fadeInLeft" data-wow-duration="2s">
-                                    <img src="img/mmorpg.jpg" alt="">
-                                </div>
-                                <div class="contextright2">
-                                    <h2>MMORPG</h2>
-                                    <p>세계 최초의 그래픽 온라인 게임으로 평가되는 <br>‘바람의나라’를 선보이며 그래픽 온라인 게임의 장을 열었으며,<br> 2001년 온라인 게임에 부분유료화(Free to Play)라는 <br>비즈니스 모델을 최초로 도입, 새로운 비즈니스 모델을 제시했습니다. </p>
-                                </div>
-                            </div>
-                            <div class="contenlast2">
-                                <h3>이어 ‘카트라이더’, ‘메이플스토리’, ‘마비노기’, ‘던전앤파이터’, ‘서든어택’ 등 새로운 시도를 담은 우수한 게임 콘텐츠를 서비스하며 넥슨만의 창조적인 DNA를 구축했으며,
-                                    다양한 게임들을 성공적으로 서비스하며 세계 게임 시장에서 게임IP(Intellectual Property, 지식재산권)개발 및 퍼블리싱의 중추 역할을 하고 있습니다.</h3>
-                            </div>
-                            <div class="imgbx">
-                                <div class="img11">
-                                    <img src="img/df1.jpg" alt="">
-                                    <span>PC인기 레이싱게임,모바일에서 만나다 손 끝에서 전해지는 엔진과 다이나믹한 드리프트 그리고 짜릿한 속도감</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer2">
-                            <button type="button" class="btn">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- [e] Solutions -->
         </div>
 
     </div>
-    </div>
-    </div>
+    <script>
+        const body = document.body,
+            scrollWrap = document.getElementsByClassName("mainWrap")[0],
+            height = scrollWrap.getBoundingClientRect().height - 1,
+            speed = 0.04;
+
+        var offset = 0;
+
+        body.style.height = Math.floor(height) + "px";
+
+        function smoothScroll() {
+            offset += (window.pageYOffset - offset) * speed;
+
+            var scroll = "translateY(-" + offset + "px) translateZ(0)";
+            scrollWrap.style.transform = scroll;
+
+            callScroll = requestAnimationFrame(smoothScroll);
+        }
+
+        smoothScroll();
+
+        $(function() {
+            var elements = $(".text,.text1").toArray();
+            $(window).scroll(function() {
+                elements.forEach(function(item) {
+                    if ($(this).scrollTop() >= $(item).offset().top - 400) {
+                        $(item).addClass("reveal");
+                    }
+                });
+            });
+            elements.forEach(function(item) {
+                if ($(this).scrollTop() >= $(item).offset().top - 400) {
+                    $(item).addClass("reveal");
+                }
+            });
+        });
+    </script>
 </body></html>
