@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-icon-192x192.png">
+    <title>eclipse</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/swiper.min1.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script>
+        $(function() {
+            $("#header").load("header.html");
+            $("#footer").load("footer.html");
+
+            $(".solution-wrap .article").on("mouseenter focus", function() {
+                $(this).addClass("on").siblings().removeClass("on");
+            }).on("mouseleave focusout", function() {
+                $(this).first().trigger("mouseenter");
+            }).first().trigger("mouseenter");
+
+            $(".accCont").on("mouseenter focus", ".col", function() {
+                $.$(this).addClass("active").siblings().removeClass("active");
+            }).on("mouseleave blur", function() {
+                $.$(this).find(".col").first().trigger("mouseenter");
+            }).find(".col").first().trigger("mouseenter");
+
+            var swiper = new Swiper('.swiper-container', {
+                spaceBetween: 30,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 4500,
+                    disableOnInteraction: false,
+                },
+                //                pagination: {
+                //                    el: '.swiper-pagination',
+                //                    clickable: true,
+                //                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="header"></div>
+    <div id="wrap" class="mainWrap container">
+        <div id="contentsWrap">
+            <div class="container_m">
+                <div class="conimg">
+                    <div class="context">
+                        <div class="contx">
+                            <!--                            <h2 class="text">eclipse</h2>-->
+                            <a class="link link--nukun" href="#">ecli<span>p</span>se</a>
+                            <p class="text">끊임없는 도전과 열정으로 창조한 세계안에서<br>무한한 즐거움으로 연결되는것,이클립스가 꿈꾸는 미래입니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll_line"></div>
+            </div>
+            <!-- [s] Solutions -->
+            <div class="section-solutions">
+                <div class="inner-wrap">
+                    <div class="tit-area">
+                        <h1 class="text1">The Number 1 Logistics Innovation Partner</h1>
+                        <div class="bar"></div>
+                        <p class="text1">1994년 설립된 이클립스는 탄탄한 개발력과 항상 ‘최초’를 추구하고 실현해 낸 대한민국 온라인 게임 산업을 선도해 온 글로벌 게임업체입니다</p>
+                    </div>
+                    <div class="solution-wrap cb">
+                        <a href="" class="article solution1">
+                            <div class="inner">
+                                <h2 class="tit">지식 &amp; 지식의융합</h2>
+                                <div class="cnt">
+                                    <p>끊임없이 고민하고 다듬는 과정이 퀄리티를 만듭니다.<br>사람들을 감동시킬때까지 진지하게 임합니다.</p>
+                                    <span class="btn"><em>Learn more</em></span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" class="article solution2">
+                            <div class="inner">
+                                <h2 class="tit">창의로 이어지는 기술</h2>
+                                <div class="cnt">
+                                    <p>우리에게 실현 불가능한 세계는 없습니다.<br> 창의를 향한 헌신과 열정으로 무한한 세계를 창조합니다.</p>
+                                    <span class="btn"><em>Learn more</em></span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" class="article solution3 on">
+                            <div class="inner">
+                                <h2 class="tit">즐거움으로 연결된 세계</h2>
+                                <div class="cnt">
+                                    <p>미래는 새로운 생각에서 출발합니다.<br> 즐거움으로 연결된 세상을 만들기 위해 도전을 멈추지 않습니다.</p>
+                                    <span class="btn"><em>Learn more</em></span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" class="article solution4">
+                            <div class="inner">
+                                <h2 class="tit">기술 지원</h2>
+                                <div class="cnt">
+                                    <p>이클립스는 세계의 무대입니다.<br>지난 2000년,미국 법인의 설립을 시작으로 북미,유럽,일본,대만 등에 글로벌 네트워크를 구축하며<br> 전 세계60여 개국에 즐거움의 가치를 전하고 있습니다.</p>
+                                    <span class="btn">Learn more</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- [e] Solutions -->
+            <div class="section2">
+                <div class="se2">
+                    <div class="tit-area">
+                        <p class="text">개발자 노트</p>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="contenbx">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>PoQueryLog분석<br></p>
+                                </li>
+                                <li>
+                                    <p>postgresql query log에 대해서 정리한 포스터 입니다. DB리버스를 통해 테이블의 목록 및 관계를 조금이나마 파악하였지만 더 정확히 파악하기 위해서 LOG를 통해 더 알아보겠습니다.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.09.27</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>개발자 노트</span>
+                                </li>
+                                <li>
+                                    <p>CKAN패키지 설치 가이드 (rwweer18.01)</p>
+                                </li>
+                                <li>
+                                    <p>CKAN설치 과정에 대해서 정리한 포스터 입니다. 우분투는 18.01 버전을 기준으로 설치했습니다. 설치 매뉴얼은 해당 주소를 참고했습니다.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.09.27</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>개발자 노트</span>
+                                </li>
+                                <li>
+                                    <p>CKAN DB 리버스모델링</p>
+                                </li>
+                                <li>
+                                  <p>
+                                       CKAN DB 리버스에 대한 포스터 입니다. CKAN에서 사용하는 DA5를 이용하여 리버스 DB를 하게 되었습니다. 제공하는 리버스기능을 이용하여 알아보겠습니다.
+                                  </p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.09.27</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>개발자 노트</span>
+                                </li>
+                                <li>
+                                    <p>DCAT(데이터 카탈로그 메타데이터표준)</p>
+                                </li>
+                                <li>
+                                   <p>
+                                    DCAT 웹에 존재하는 데이터 목록 간의 상호 운용성을 높이기 위해 설계된 RDF어휘 DCAT 이해를 위해 RDF -XML -DCAT순으로 진행하겠습니다.   
+                                   </p>
+                                    
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.09.27</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tit-area">
+                        <p class="text">1994년 설립된 이클립스는 탄탄한 개발력과 항상 ‘최초’를 추구하고 실현해 낸 대한민국 온라인 게임 산업을 선도해 온 글로벌 게임업체입니다</p>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="grid cd">
+                        <figure class="effect-layla">
+                            <img src="img/work-5382501_1280.jpg" alt="img06">
+                            <figcaption>
+                                <h2>INTE <span>GRITY</span></h2>
+                                <p>끊임없이 고민하고 다듬는 과정이 퀄리티를 만듭니다.사람들을 감동시킬때까지 진지하게 임합니다.</p>
+
+                            </figcaption>
+                        </figure>
+                        <figure class="effect-layla">
+                            <img src="img/holding-world_46706-572.jpg" alt="img03">
+                            <figcaption>
+                                <h2>PAS<span>SION</span></h2>
+                                <p>우리에게 실현 불가능한 세계는 없습니다. 창의를 향한 헌신과 열정으로 무한한 세계를 창조합니다.</p>
+
+                            </figcaption>
+                        </figure>
+                        <figure class="effect-layla">
+                            <img src="img/city.jpg" alt="img03">
+                            <figcaption>
+                                <h2>NAVER <span>ENDING</span></h2>
+                                <p>미래는 새로운 생각에서 출발합니다. 즐거움으로 연결된 세상을 만들기 위해 도전을 멈추지 않습니다.</p>
+
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <div class="section4">
+                <div class="se4">
+                    <div class="textbx">
+                        <h1>go to website</h1>
+                        <div class="bar"></div>
+                        <ul>
+                            <li>
+                                <p>125,Ore-ro GWANG MYEONG-si,South Korea</p>
+                            </li>
+                            <li>
+                                <p>광명시 오리로 125 (일직동)</p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-phone-alt"></i>+82) (0)2 2020 0926</p>
+                            </li>
+                            <li>
+                                <p><i class="far fa-envelope"></i>redbee@naver.com</p>
+                            </li>
+                            <li>
+                                <i class="fab fa-twitter"></i>
+                                <i class="fab fa-instagram"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+<footer id="footer"></footer>
+    <script>
+        $(function() {
+            var elements = $(".text,.text1").toArray();
+            $(window).scroll(function() {
+                elements.forEach(function(item) {
+                    if ($(this).scrollTop() >= $(item).offset().top - 500) {
+                        $(item).addClass("reveal");
+                    }
+                });
+            });
+            elements.forEach(function(item) {
+                if ($(this).scrollTop() >= $(item).offset().top - 500) {
+                    $(item).addClass("reveal");
+                }
+            });
+        });
+    </script>
+</body></html>

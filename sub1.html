@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-icon-192x192.png">
+    <title>eclipse</title>
+    <link rel="stylesheet" href="css/sub3.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/slide.css">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- swiper js -->
+    <script src="js/swiper.min.js"></script>
+    <!-- gsap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <!-- swiper css -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+        $(function() {
+            $("#header").load("header.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    <script>
+        $(function() {
+            if ($('.gallery-wrapper').length) {
+                var galleryThumbs = new Swiper('.gallery-wrapper .content .gallery.thumb .swiper-container', {
+                    speed: 900,
+                    effect: 'slide',
+                    slidesPerView: 'auto',
+                    spaceBetween: 12,
+                    grabCursor: false,
+                    simulateTouch: true,
+                    loop: false,
+                    watchSlidesVisibility: true,
+                    watchSlidesProgress: true,
+                    navigation: {
+                        nextEl: '.gallery-wrapper .content .gallery.thumb .swiper-next-button',
+                        prevEl: '.gallery-wrapper .content .gallery.thumb .swiper-prev-button',
+                    },
+                    breakpoints: {
+                        320: {
+                            slidesPerView: 2,
+                            spaceBetween: 10,
+                        },
+                        414: {
+                            slidesPerView: 3,
+                            spaceBetween: 10
+                        },
+                        768: {
+                            slidesPerView: 5,
+                            spaceBetween: 10
+                        },
+                        1024: {
+                            slidesPerView: 7,
+                            spaceBetween: 10
+                        }
+                    }
+                });
+
+                var galleryFull = new Swiper('.gallery-wrapper .content .gallery.full .swiper-container', {
+                    speed: 900,
+                    effect: 'slide',
+                    slidesPerView: 3,
+                    spaceBetween: 0,
+                    centeredSlides: true,
+                    autoplay: {
+                        delay: 7000,
+                        disableOnInteraction: false,
+                        stopOnLastSlide: false
+                    },
+                    keyboard: {
+                        enabled: true,
+                    },
+                    grabCursor: false,
+                    simulateTouch: false,
+                    loop: true,
+                    navigation: {
+                        nextEl: '.gallery-wrapper .content .gallery.full .swiper-next-button',
+                        prevEl: '.gallery-wrapper .content .gallery.full .swiper-prev-button',
+                    },
+                    thumbs: {
+                        swiper: galleryThumbs
+                    },
+                    on: {
+                        slideChangeTransitionStart: function() {
+                            $('.gallery-wrapper .content .gallery.full .swiper-slide .overlay').removeClass('show');
+                        },
+                        slideChangeTransitionEnd: function() {
+                            $('.gallery-wrapper .content .gallery.full .swiper-slide-active .overlay').addClass('show');
+                        }
+                    }
+                });
+            }
+        });
+
+
+        $(window).on("load", function() {
+            setTimeout(function() {
+                $('.loader').fadeOut();
+            }, 1000);
+        });
+    </script>
+    <script>
+        $(function() {
+            $(".video4").hide();
+            $(".video4").eq(0).fadeIn();
+            $(".se4 li").eq(0).addClass("hover");
+
+            $(".se4 li").click(function() {
+
+                var i = $(this).index();
+                $(".se4 li").removeClass("hover");
+                $(".se4 li").eq(i).addClass("hover");
+                $(".video4").hide();
+                $(".video4").eq(i).fadeIn();
+            });
+        });
+    </script>
+    <script>
+        /* ===================================== About ===================================== */
+        $(function() {
+
+            var About = (function() {
+                var isWheel = true,
+                    totalFrames = $('.map img').length - 1,
+                    animationDuration = 4200,
+                    timePerFrame = animationDuration / totalFrames,
+                    timeWhenLastUpdate,
+                    timeFromLastUpdate,
+                    frameNumber = 1,
+                    anim,
+                    rollingIdx = 1,
+                    rollingTimer,
+                    $secTop = $('.section_top')
+
+                function init() {
+                    addEvents();
+                }
+
+                function addEvents() {
+                    $secTop.addClass('active');
+                    TweenMax.to($(".section_top .g_title1_en, .section_top"), 0.8, {
+                        marginTop: 0,
+                        opacity: 1,
+                        delay: 0.5,
+                        ease: [.215, .61, .355, 1],
+                        onComplete: function() {
+                            wheel();
+                            scroll();
+                        }
+                    });
+                }
+
+                function wheel() {
+                    // wheel - intro motion, top slide start
+                    $(window).on('wheel touchstart touchmove', function() {
+
+                        if (!isWheel) {
+                            return;
+                        }
+
+                        TweenMax.to($('.mask_logo'), 2, {
+                            x: '-10%',
+                            y: '25%',
+                            scale: 3,
+                            ease: Power4.easeOut
+                        });
+                        TweenMax.to($('.g_title1_en'), 2, {
+                            opacity: 0,
+                            ease: Power4.easeOut
+                        });
+
+                        setTimeout(function() {
+                            $('body').addClass('on');
+                            $secTop.addClass('on');
+                            $('section').addClass('on');
+                        }, 700);
+
+                        setTimeout(function() {
+                            topSlideFirst();
+                        }, 1500)
+
+                        isWheel = false;
+                    });
+                }
+
+                function scroll() {
+                    //                    var parallaxH = $secCeo.height(),
+                    //                        parallaxT = $secCeo.offset().top;
+
+                    $(window).on('scroll', function() {
+                        var scrollTop = $(window).scrollTop(),
+                            windowHeight = $(window).height();
+
+                        $('section').each(function() {
+                            var offsetTop = $(this).offset().top;
+                        });
+                    });
+                }
+                // logo mask image slide - firtst inmotion
+                function topSlideFirst() {
+                    var $bg = $('.top_bg'),
+                        $character = $('.top_character');
+
+                    TweenMax.to($bg, 0, {
+                        x: '20%'
+                    });
+                    TweenMax.to($bg.eq(0), 1, {
+                        x: '1%',
+                        opacity: 1,
+                        ease: 'none'
+                    });
+                    TweenMax.to($bg.eq(0), 3, {
+                        x: '0%',
+                        delay: 1,
+                        ease: 'none'
+                    });
+                    TweenMax.to($character.eq(0), 0.9, {
+                        opacity: 1,
+                        delay: 0.1,
+                        ease: Power0.easeNone
+                    });
+                    TweenMax.to($character.eq(0), 1, {
+                        x: '50%',
+                        opacity: 0,
+                        ease: [0, .92, .59, 1]
+                    });
+                    TweenMax.to($character.eq(0), 3, {
+                        x: '47%',
+                        delay: 1,
+                        ease: Power0.easeNone
+                    });
+
+                    topSlide();
+                }
+
+                // logo mask image slide - rolling
+                function topSlide() {
+                    rollingTimer = setInterval(function() {
+                        if (rollingIdx > 3) {
+                            rollingIdx = 0;
+                        }
+                        rollingBg(rollingIdx);
+                        rollingIdx += 1;
+                    }, 4000);
+                }
+
+                function rollingBg(num) {
+                    var $bg = $('.top_bg'),
+                        $character = $('.top_character');
+
+                    $bg.removeClass('on');
+                    $bg.eq(rollingIdx).addClass('on');
+
+                    var beforeBg = $('.top_bg.on').data('image');
+
+                    $secTop.css({
+                        'background-image': 'url(' + beforeBg + ')'
+                    });
+
+                    TweenMax.to($bg, 2, {
+                        opacity: 0,
+                        ease: Power3.easeOut
+                    });
+                    TweenMax.to($bg.eq(num), 1, {
+                        opacity: 1,
+                        ease: Power3.easeOut
+                    });
+                    TweenMax.fromTo($bg.eq(num), 4, {
+                        x: '1%'
+                    }, {
+                        x: '0%',
+                        ease: 'none'
+                    });
+                    TweenMax.to($character, 1, {
+                        opacity: 0,
+                        ease: Power3.easeOut
+                    });
+                    TweenMax.to($character.eq(num), 0.9, {
+                        opacity: 1,
+                        delay: 0.1,
+                        ease: Power0.easeNone
+                    });
+                    TweenMax.fromTo($character.eq(num), 4, {
+                        x: '50%'
+                    }, {
+                        x: '47%',
+                        delay: 0.1,
+                        ease: Power0.easeNone
+                    });
+                }
+                init();
+            })();
+
+        });
+    </script>
+</head>
+
+<body>
+    <div id="header"></div>
+    <div class="container" id="wrap">
+        <div class="conimg">
+            <h2 class="text">기업소개</h2>
+            <div class="scroll_line"></div>
+        </div>
+
+
+        <!--section1-->
+        <section class="section1">
+            <div class="con1">
+                <div id="ABOUT" class="wrap subNavi_whoWeAre_about on">
+                    <section class="g_section_full section section_top">
+                        <div class="top_bg" style="background: url(./img/bg_top_1.jpg) center center / cover no-repeat;" alt="이미지"></div>
+                        <div class="top_bg" style="background: url(./img/bg_top_2.jpg) center center / cover no-repeat;" alt="이미지"></div>
+                        <div class="top_bg" style="background: url(./img/bg_top_3.jpg) center center / cover no-repeat;" alt="이미지"></div>
+                        <div class="top_bg" style="background: url(./img/bg_top_3.jpg) center center / cover no-repeat; " alt="이미지"></div>
+                        <img class="mask_logo" src="img/a.png" alt="로고 마스크 이미지">
+                        <img class="top_character character1" src="img/ch_1.png" alt="이미지">
+                        <img class="top_character" src="img/ch_2.png" alt="">
+                        <img class="top_character" src="img/ch_3.png" alt="">
+                        <img class="top_character" src="img/character_4.png" alt="">
+                        <img class="mask_logo mask_logo2" src="https://static-brand.ncsoft.com/ncsoft/p/_resource/img/whoWeAre/about/logo_mask_2.svg" alt="로고이미지">
+                        <section class="g_section">
+                            <div class="text_box offset1">
+                                <h4 class="text1">즐거움으로 연결된 <br>새로운 세상, 이클립스</h4>
+                                <p class="text1 g_text1">세상 모두가 즐거움으로 연결되는 새로운 미래, <br>아무도 가보지 못한 그 세상이 감동으로 가득 찰 때까지 <br>이클립스는 끊임없이 꿈꾸며 도전을 멈추지 않을 것입니다.</p>
+                            </div>
+                        </section>
+                    </section>
+                </div>
+                <div>
+                    <span class="nxt_fix" style="display:none;"></span>
+                </div>
+            </div>
+        </section>
+
+        <!--        section2-->
+        <section class="section2">
+            <div class="se1">
+
+                <div class="con2">
+                </div>
+                <section class="g_section">
+                    <div class="text_box offset1">
+                        <h4 class="text">CEO'S MESSAGE</h4>
+                        <p class="text g_text1">앞선 기술,끊임없는 도전, 정도 경영으로 <br>고객과 함께 최고의 가치를 실현합니다.</p>
+                        <p class="text g_text1">Global CEO/CCO NAME</p>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!--        section3-->
+        <section class="section3">
+            <section class="g_section">
+                <div class="text_box offset1">
+                    <h4 class="text1">E & L CENTER</h4>
+                    <p class="text1 g_text1">즐거움의 가치를 창출하는곳,<br>이클립스가 만들어 나갈 새로운 세상으로 이르는 꿈의 관문입니다.</p>
+                </div>
+            </section>
+            <!--gallery-->
+            <div class="gallery-wrapper">
+                <div class="content">
+                    <div class="gallery full">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company1.jpg" alt="" />
+                                    </div>
+
+                                    <div class="overlay">
+                                        <div class="text-wrap">
+                                            <div class="name">
+                                                <span>RD CENTER</span>
+                                            </div>
+                                            <div class="caption">
+                                                <p>
+                                                    이클립스 센터는 대지가 지닌 한계 조건을 재해석하여 형성된 도시의 새로운 여백 공간입니다.
+                                                    다양한 프로그램 사이에 존재하는 잠재적 가능성의 장을 의미합니다. 과거와 현재를 의마하는 것이 아닌 미래적 가치를 새롭게 정의하고 이를 상징화 한다는데 의미가 있습니다.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company2.jpg" alt="" />
+                                    </div>
+
+                                    <div class="overlay">
+                                        <div class="text-wrap">
+                                            <div class="name">
+                                                <span>
+                                                    office</span>
+                                            </div>
+                                            <div class="caption">
+                                                <p>
+                                                    창의성이 중요하기 때문에 창의성을 최대한 발휘할 수 있도록 자유롭게 언제 어디서든 일할 수 있도록 개방적이고 유연한구조와 가구를 배치하였습니다.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company3.jpg" alt="" />
+                                    </div>
+
+                                    <div class="overlay">
+                                        <div class="text-wrap">
+                                            <div class="name">
+                                                <span>SEUTYUDIO</span>
+                                            </div>
+                                            <div class="caption">
+                                                <p>
+                                                    오랜기간 독자적으로 개발한 정면판서에 최적화된 하드웨어기반 투명보드 입니다. x-보드에는 강사용 터치패널이 장착되어 있어 보다 수월하게 강의를 제작할 수 있습니다.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company4.jpg" alt="" />
+                                    </div>
+
+                                    <div class="overlay">
+                                        <div class="text-wrap">
+                                            <div class="name">
+                                                <span>LIBRARY</span>
+                                            </div>
+                                            <div class="caption">
+                                                <p>
+                                                    이클립스 라이브러리는 회사를 대표하는 공간, 이클립스 사옥에 자리하고 있습니다. 로비에 유명한 미술 작품이나 대표 서비스를 보여주는 대신 책이 있는 공간,도서관 을 만든 이유는 이클립스와 책 모두 지삭과 정보, 이야기와 콘텐츠가 담겨있다는 점에서 서로 닮아있기 때문입니다.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company5.jpg" alt="" />
+                                    </div>
+
+                                    <div class="overlay">
+                                        <div class="text-wrap">
+                                            <div class="name">
+                                                <span>LOBBY</span>
+                                            </div>
+                                            <div class="caption">
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quasi aliquam eius, blanditiis quae, explicabo praesentium corporis tempora quam et rem nulla repellendus placeat, nisi omnis earum sunt suscipit aspernatur!
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company6.jpg" alt="" />
+                                    </div>
+
+                                    <div class="overlay">
+                                        <div class="text-wrap">
+                                            <div class="name">
+                                                <span>REST AREA</span>
+                                            </div>
+                                            <div class="caption">
+                                                <p>
+                                                    종이판재를 구조적 강성을 지닌 waffle frame으로 엮어 종이로 구축할 수 있는 형태에 대한 실험입니다. 총900여개의 종이 패널들은 레이져 컷팅에 의해서 재단되어 교차된 구조체로서 결합됩니다.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company7.jpg" alt="" />
+                                    </div>
+
+                                    <div class="overlay">
+                                        <div class="text-wrap">
+                                            <div class="name">
+                                                <span>
+                                                    Playroom</span>
+                                            </div>
+                                            <div class="caption">
+                                                <p>
+                                                    박스 형태의 교실을 라운드 타입의 공간으로 변형한 놀이공간입니다. 사물함 및 화분대들을 일체화 시키고 천편일률적인 서가를 아이들의 스케일에 맞는 놀이공간으로 계획하였습니다.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-next-button">
+                            <em class="material-icons">chevron_right</em>
+                        </div>
+                        <div class="swiper-prev-button">
+                            <em class="material-icons">chevron_left</em>
+                        </div>
+                    </div>
+
+                    <div class="gallery thumb">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company1.jpg" alt="" />
+
+                                        <div class="overlay">
+                                            <em class="material-icons">remove_red_eye</em>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company2.jpg" alt="" />
+
+                                        <div class="overlay">
+                                            <em class="material-icons">remove_red_eye</em>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company3.jpg" alt="" />
+
+                                        <div class="overlay">
+                                            <em class="material-icons">remove_red_eye</em>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company4.jpg" alt="" />
+
+                                        <div class="overlay">
+                                            <em class="material-icons">remove_red_eye</em>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company5.jpg" alt="" />
+
+                                        <div class="overlay">
+                                            <em class="material-icons">remove_red_eye</em>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company6.jpg" alt="" />
+
+                                        <div class="overlay">
+                                            <em class="material-icons">remove_red_eye</em>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="img/company7.jpg" alt="" />
+
+                                        <div class="overlay">
+                                            <em class="material-icons">remove_red_eye</em>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-next-button">
+                            <em class="material-icons">arrow_right_alt</em>
+
+                        </div>
+                        <div class="swiper-prev-button">
+                            <em class="material-icons">arrow_right_alt</em>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--        section4-->
+        <section class="section4">
+            <h1 class="text1">CORE VALUE</h1>
+            <div class="g_section1">
+                <ul class="se4">
+
+                    <li class="hover">
+                        <h3>INTEGRITY</h3>
+                        <span>퀄리티를 향한 진정성</span>
+                        <p>끊임없이 고민하고 다듬는 과정이<br>퀄리티를 만듭니다. <br>사람들을 감동시킬 때까지 진지하게 임합니다.</p>
+                    </li>
+                    <li>
+                        <h3>PASSION</h3>
+                        <span>새로운 시도를 멈추지 않는 열정</span>
+                        <p>우리에게 실현 불가능한 세계는 없습니다.<br>창의를 향한 헌신과 열정으로<br>무한한 세계를 창조합니다.</p>
+                    </li>
+                    <li>
+                        <h3>LEVER ENDING</h3>
+                        <span>즐거운 세상을 만들기 위한 끊임없는 도전</span>
+                        <p>미래는 새로운 생각에서 출발합니다.<br>즐거움으로 연결된 세상을 만들기 위해<br>도전을 멈추지 않습니다.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="video4 hover">
+                <iframe width="1000" height="500" src="https://www.youtube.com/embed/2wIgfxYBHXQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video4 hover">
+                <iframe width="1000" height="500" src="https://www.youtube.com/embed/2q9fyoJ5fRM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video4 hover">
+                <iframe width="1000" height="500" src="https://www.youtube.com/embed/l9o33uBi40U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+    </div>
+    <footer id="footer"></footer>
+    <script>
+        $(function() {
+            var elements = $(".text,.text1").toArray();
+            $(window).scroll(function() {
+                elements.forEach(function(item) {
+                    if ($(this).scrollTop() >= $(item).offset().top - 500) {
+                        $(item).addClass("reveal");
+                    }
+                });
+            });
+            elements.forEach(function(item) {
+                if ($(this).scrollTop() >= $(item).offset().top - 500) {
+                    $(item).addClass("reveal");
+                }
+            });
+        });
+    </script>
+</body></html>

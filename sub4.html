@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-icon-192x192.png">
+    <title>eclipse</title>
+    <link rel="stylesheet" href="css/sub4.css">
+    <link rel="stylesheet" href="css/common.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#header").load("header.html");
+            $("#footer").load("footer.html");
+            var ht = $(window).height();
+            var topBox = $(".top");
+            topBox.height(ht);
+
+            $(window).on("resize", function() {
+                var ht = $(window).height();
+                topBox.height(ht);
+            });
+            // 2 컨텐츠 박스 contents section ---------------------------------------------//
+            var container = $(".section2");
+            var section = ("li");
+            var moreH = 3 * (container.outerHeight() + 50) - 50;
+            // scroll animation--
+
+            var windowheight = $(window).height();
+            var nowScroll = $(window).scrollTop();
+            var delayPosition = 100;
+
+            $(document).ready(function() {
+                floatUp();
+            });
+            $(window).on("scroll", function() {
+                floatUp();
+            });
+
+            $(window).on("resize", function() {
+                insertSectionFloat();
+            });
+
+            function floatUp() {
+                var position = $(window).scrollTop() + windowheight;
+                var readySection = $("li.ready");
+
+                readySection.each(function() {
+                    if (!$(this).hasClass("up") && $(this).data('offsetTop') < position) {
+                        $(this).addClass('up');
+                        $(this).removeClass('ready');
+                    }
+                });
+            }
+
+            function insertSectionFloat() {
+                windowheight = $(window).height();
+
+                $("li.tar").each(function() {
+                    var thisTop = $(this).offset().top;
+                    $(this).data('offsetTop', thisTop);
+                });
+            }
+
+            (function init() {
+                insertSectionFloat();
+            })();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var num = 0,
+                $button = $(".button1 > .page_wrap > .btn1 > a"),
+                $layout = $(".se2 > ul"),
+                $left = $(".button1 > .page_wrap > .btnlb"),
+                $right = $(".button1 > .page_wrap > .btnrb"),
+                $first = $(".button1 > .page_wrap > .btnll"),
+                $end = $(".button1 > .page_wrap > .btnrr");
+
+            $button.click(function() {
+                var i = $(this).index();
+
+                $button.removeClass();
+                $(".show_layout1 > .button1 > .page_wrap > .btn1 > a").eq(i).addClass("active");
+
+                $layout.removeClass();
+                $(".show_layout1 > ul").eq(i).addClass("list");
+                num = i;
+            });
+
+            $left.click(function(e) {
+                e.preventDefault();
+                console.log("1");
+                num = num - 1;
+                if (num < 0) {
+                    num = 0;
+                    return; // 빠져나오기
+                }
+                motion();
+            });
+
+            $right.click(function(e) {
+                e.preventDefault();
+                $listNum = $(".show_layout1 >.button1 > .page_wrap > .btn1 > a").length;
+                console.log("$listNum:" + $listNum);
+                num = num + 1;
+                if (num >= $listNum) {
+                    num = $listNum - 1;
+                    return;
+                }
+                motion();
+            });
+
+            function motion() {
+                $button.removeClass();
+                $(".show_layout1 > .button1 > .page_wrap > .btn1 > a").eq(num).addClass("active");
+
+                $layout.removeClass();
+                $(".show_layout1 > ul").eq(num).addClass("list");
+                //                num = i;         
+            }
+
+            $first.click(function(e) {
+                $button.removeClass();
+                $(".show_layout1 > .button1 > .page_wrap > .btn1 > a").eq(0).addClass("active");
+                $layout.removeClass();
+                $(".show_layout1 > ul").eq(0).addClass("list");
+                num = 0;
+            });
+            $end.click(function(e) {
+                var a = $(".show_layout1 >.button1 > .page_wrap > .btn1 > a").length - 1;
+                $button.removeClass();
+                $(".show_layout1 > .button > .page_wrap > .btn1 > a").eq(a).addClass("active");
+                $layout.removeClass();
+                $(".show_layout1 > ul").eq(a).addClass("list");
+                num = a;
+            })
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var num = 0,
+                $button = $(".button2 > .page_wrap > .btn1 > a"),
+                $layout = $(".se2 > ul"),
+                $left = $(".button2 > .page_wrap > .btnlb"),
+                $right = $(".button2 > .page_wrap > .btnrb"),
+                $first = $(".button2 > .page_wrap > .btnll"),
+                $end = $(".button2 > .page_wrap > .btnrr");
+
+            $button.click(function() {
+                var i = $(this).index();
+                $button.removeClass();
+                $button.eq(i).addClass("active");
+                $layout.removeClass();
+                $layout.eq(i).addClass("list");
+                num = i;
+            });
+
+            $left.click(function(e) {
+                e.preventDefault();
+                num = num - 1;
+                if (num < 0) {
+                    num = 0;
+                    return; // 빠져나오기
+                }
+                motion();
+            });
+
+            $right.click(function(e) {
+                e.preventDefault();
+                $listNum = $(".button2 > .page_wrap > .btn1 > a").length;
+                num = num + 1;
+                if (num >= $listNum) {
+                    num = $listNum - 1;
+                    return;
+                }
+                motion();
+            });
+
+            function motion() {
+                $button.removeClass();
+                $button.eq(num).addClass("active");
+                $layout.removeClass();
+                $layout.eq(num).addClass("list");
+            }
+
+            $first.click(function(e) {
+                $button.removeClass();
+                $button.eq(0).addClass("active");
+                $layout.removeClass();
+                $layout.eq(0).addClass("list");
+                num = 0;
+            });
+            $end.click(function(e) {
+                var a = $(".button2 > .page_wrap > .btn1 > a").length - 1;
+                $button.removeClass();
+                $button.eq(a).addClass("active");
+                $layout.removeClass();
+                $layout.eq(a).addClass("list");
+                num = a;
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div id="header"></div>
+    <div class="container">
+        <div class="co1">
+            <h2>개발자노트</h2>
+        </div>
+        <section class="section1">
+            <div class="se1">
+                <div class="box">
+                    <div class="bx">
+                        <a class="c-preview apr">
+                            <div class="c-preview__img"></div>
+                            <h2 class="c-preview__title">Gradient Hover Effect</h2>
+                        </a>
+                        <a class="textbx txt">
+                            <div class="te">
+                                <h2>llorem</h2>
+                                <p>2020.09.04</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section2">
+            <div class="se2">
+                <ul class="box list">
+                    <li class="bxb tar">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>PoQueryLog분석</p>
+                                </li>
+                                <li>
+                                    <p>postgresql query log에 대해서 정리한 포스터 입니다. DB리버스를 통해 테이블의 목록 및 관계를 조금이나마 파악하였지만 더 정확히 파악하기 위해서 LOG를 통해 DATA가 어느 테이블에 저장되는지 알아보겠습니다.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.09.27</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN패키지 설치 가이드 (rwweer18.01)</p>
+                                </li>
+                                <li>
+                                    <p>CKAN설치 과정에 대해서 정리한 포스터 입니다. 우분투는 18.01 버전을 기준으로 설치했습니다. 설치 매뉴얼은 해당 주소를 참고했습니다. </p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.09.28</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN DB 리버스모델링</p>
+                                </li>
+                                <li>
+                                    <p>CKAN DB 리버스에 대한 포스터 입니다. CKAN에서 사용하는 DA5를 이용하여 리버스 DB를 하게 되었습니다. 제공하는 리버스기능을 이용하여 알아보겠습니다.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.10.7</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>DCAT(데이터 카탈로그 메타데이터표준)</p>
+                                </li>
+                                <li>
+                                    <p>DCAT 웹에 존재하는 데이터 목록 간의 상호 운용성을 높이기 위해 설계된 RDF어휘 DCAT 이해를 위해 RDF -XML -DCAT순으로 진행하겠습니다.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.10.8</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>DCAT(데이터카탈로그메타데이터표준)-3</p>
+                                </li>
+                                <li>
+                                    <p>DCAT (Data Catalogue Vocabulary) 웹에 게시된 데이터 카탈로그 간의 데이터 검색 및 데이터 활용성을 향상하기 위해 응용 프로그램이 여러 카탈로그의 메타데이터를 쉽게 사용할 수 있게 합니다.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.10.8</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN DATASET등록 시 사용된 테이블분석</p>
+                                </li>
+                                <li>
+                                    <p> 이번 포스트는 DataSet 등록 시 사용된 테이블 대해서 정리해 보았습니다. DB 리버스와 QueryLog 를 활용하여 CKAN에서 DataSet 등록 시 데이터가 어느 테이블에 어떻게 저장되는지 분석하였습니다.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.10.10</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>관리자계정 생성 및 업로드 기능추가</p>
+                                </li>
+                                <li>
+                                    <p> 이번 포스트는 관리자계정 생성 및 업로드 기능 추가에 대해서 정리해 보았습니다. 설치 매뉴얼은https://docs.ckan.org/en/2.8를 참고했습니다. </p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.10.13</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN프레임워크 준비</p>
+                                </li>
+                                <li>
+                                    <p>안녕하세요. CKAN 프레임워크에서 제공해주는 웹을 커스터마이징 하기 위한 준비하려면 필요한 부분에 대해 정리하려고 합니다. 가장 기본적인 첫 단계는 CKAN 프레임워크 소스에 대한 이해입니다...</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.10.14</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>HAPIFHIR 서버구축</p>
+                                </li>
+                                <li>
+                                    <p>이번 포스트는 HAPI FHIR 서버 구축 과정에 대해서 정리해 보았습니다. HAPI는 (HL7 application programming interface)를 말합니다. 프로그램은 이클립스 STS(Spring Tool Suite) 3.9.7 버전을 기준으로 설치했습니다. 설치 매뉴얼은 ...</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.10.16</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN프레임워크-PANDAS</p>
+                                </li>
+                                <li>
+                                    <p>안녕하세요. Ckan 프레임워크에서 데이터를 추가할 때 프로파일링 기능을 추가하고자 합니다. Python기반의 모듈인 Pandas를 활용하여 Profiling 기능을 개발했습니다. 제일 중요한게 개발 환경인데요..</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.10.16</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="box">
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN프레임워크-SOLR</p>
+                                </li>
+                                <li>
+                                    <p> 안녕하세요. CKAN의 중요 한 축을 담당하고 있는 검색엔진 Solr에 대해 알아보겠습니다. Apache Lucene(루씬)은 자바 언어로 이루어진 정보 검색 라이브러리입니다. Solr와 Elasticsearch 검색엔진은 루씬을 기반의 API입니다. </p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.10.19</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>googleMap<br> 어플리케이션(1)</p>
+                                </li>
+                                <li>
+                                    <p>이번 포스팅은 공공데이터포탈에서 데이터를 받아오고 googleAPI키를 발급받는 방법을 포스팅하겠습니다. 1. 공공데이터활용신청 어플을 작성하기에 앞서 공공데이터포탈에 접속하여 회원가입 후 데이터 활용신청을 합니다....</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.10.23</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>googleMap<br> 어플리케이션(2)</p>
+                                </li>
+                                <li>
+                                    <p>전 포스팅에서는 공공데이터에서 데이터를 받고 GoogleAPI를 발급받는 방법을 알아보았고 이번에는 발급받은 데이터와 키를 내 프로젝트에 등록해보겠습니다..</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.10.30</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>googleMap<br> 어플리케이션(3)</p>
+                                </li>
+                                <li>
+                                    <p>
+                                        이전 포스팅에서 제작한 무더위쉼터 앱에 새로운 기능을 추가하려고 합니다. 위의 이미지를 보면 지도의 화면이 내 위치일 때는 지도 위에 특별한 점이 없지만 지도 화면이 내가 있는 위치와 달라지면 상단에 버튼이 나타납니다...
+                                    </p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.11.1</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>공공데이터 API사용개발</p>
+                                </li>
+                                <li>
+                                    <p>전의 포스팅에서는 공공데이터포탈에서 데이터를 받아 페키지에 넣어 APP을 만들었다면 이번에는 공공데이터포탈에서 API를 발급 받고 인터넷으로 데이터를 가져와 사용하는 방법을 알아보려고 합니다..</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.11.2</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>HAPIFHIR 서버구축</p>
+                                </li>
+                                <li>
+                                    <p>이번 포스트는 HAPI FHIR 서버 구축 과정에 대해서 정리해 보았습니다. HAPI는 (HL7 application programming interface)를 말합니다. 프로그램은 이클립스 STS(Spring Tool Suite) 3.9.7 버전을 기준으로 설치했습니다. 설치 매뉴얼은 ...</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.11.3</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN프레임워크-PANDAS</p>
+                                </li>
+                                <li>
+                                    <p>안녕하세요. Ckan 프레임워크에서 데이터를 추가할 때 프로파일링 기능을 추가하고자 합니다. Python기반의 모듈인 Pandas를 활용하여 Profiling 기능을 개발했습니다. 제일 중요한게 개발 환경인데요..</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.11.9</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>Google DATA Catalog</p>
+                                </li>
+                                <li>
+                                    <p>안녕하세요. 구글 클라우드에서 베타, 출시 예정인 Data Catalog에 대해 알아보겠습니다. Data Catalog란? 확장성이 우수한 완전 관리형 데이터 탐색 및 메타데이터 관리 서비스입니다. Cloud Next 19를 통해서 자세히 알아보겠습니다..</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.11.13</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>HAPIFHIR 서버구축</p>
+                                </li>
+                                <li>
+                                    <p>이번 포스트는 HAPI FHIR 서버 구축 과정에 대해서 정리해 보았습니다. HAPI는 (HL7 application programming interface)를 말합니다. 프로그램은 이클립스 STS(Spring Tool Suite) 3.9.7 버전을 기준으로 설치했습니다. 설치 매뉴얼은 ...</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.11.19</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN프레임워크-PANDAS</p>
+                                </li>
+                                <li>
+                                    <p>안녕하세요. Ckan 프레임워크에서 데이터를 추가할 때 프로파일링 기능을 추가하고자 합니다. Python기반의 모듈인 Pandas를 활용하여 Profiling 기능을 개발했습니다. 제일 중요한게 개발 환경인데요..</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.11.19</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="box">
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN프레임워크-PANDAS</p>
+                                </li>
+                                <li>
+                                    <p>안녕하세요. Ckan 프레임워크에서 데이터를 추가할 때 프로파일링 기능을 추가하고자 합니다. Python기반의 모듈인 Pandas를 활용하여 Profiling 기능을 개발했습니다. 제일 중요한게 개발 환경인데요..</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.11.20</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN패키지 설치 가이드 (rwweer18.01)</p>
+                                </li>
+                                <li>
+                                    <p>CKAN설치 과정에 대해서 정리한 포스터 입니다. 우분투는 18.01 버전을 기준으로 설치했습니다. 설치 매뉴얼은 해당 주소를 참고했습니다. </p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.11.30</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN DB 리버스모델링</p>
+                                </li>
+                                <li>
+                                    <p>CKAN DB 리버스에 대한 포스터 입니다. CKAN에서 사용하는 DA5를 이용하여 리버스 DB를 하게 되었습니다. 제공하는 리버스기능을 이용하여 알아보겠습니다.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.12.1</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>DCAT(데이터 카탈로그 메타데이터표준)</p>
+                                </li>
+                                <li>
+                                    <p>DCAT 웹에 존재하는 데이터 목록 간의 상호 운용성을 높이기 위해 설계된 RDF어휘 DCAT 이해를 위해 RDF -XML -DCAT순으로 진행하겠습니다.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.12.11</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>DCAT(데이터카탈로그메타데이터표준)-3</p>
+                                </li>
+                                <li>
+                                    <p>DCAT (Data Catalogue Vocabulary) 웹에 게시된 데이터 카탈로그 간의 데이터 검색 및 데이터 활용성을 향상하기 위해 응용 프로그램이 여러 카탈로그의 메타데이터를 쉽게 사용할 수 있게 합니다.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.12.12</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN DATASET등록 시 사용된 테이블분석</p>
+                                </li>
+                                <li>
+                                    <p> 이번 포스트는 DataSet 등록 시 사용된 테이블 대해서 정리해 보았습니다. DB 리버스와 QueryLog 를 활용하여 CKAN에서 DataSet 등록 시 데이터가 어느 테이블에 어떻게 저장되는지 분석하였습니다.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.12.13</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>관리자계정 생성 및 업로드 기능추가</p>
+                                </li>
+                                <li>
+                                    <p> 이번 포스트는 관리자계정 생성 및 업로드 기능 추가에 대해서 정리해 보았습니다. 설치 매뉴얼은https://docs.ckan.org/en/2.8를 참고했습니다. </p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.12.20</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN프레임워크 준비</p>
+                                </li>
+                                <li>
+                                    <p>안녕하세요. CKAN 프레임워크에서 제공해주는 웹을 커스터마이징 하기 위한 준비하려면 필요한 부분에 대해 정리하려고 합니다. 가장 기본적인 첫 단계는 CKAN 프레임워크 소스에 대한 이해입니다...</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.12.23</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>HAPIFHIR 서버구축</p>
+                                </li>
+                                <li>
+                                    <p>이번 포스트는 HAPI FHIR 서버 구축 과정에 대해서 정리해 보았습니다. HAPI는 (HL7 application programming interface)를 말합니다. 프로그램은 이클립스 STS(Spring Tool Suite) 3.9.7 버전을 기준으로 설치했습니다. 설치 매뉴얼은 ...</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.12.24</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>CKAN프레임워크-PANDAS</p>
+                                </li>
+                                <li>
+                                    <p>안녕하세요. Ckan 프레임워크에서 데이터를 추가할 때 프로파일링 기능을 추가하고자 합니다. Python기반의 모듈인 Pandas를 활용하여 Profiling 기능을 개발했습니다. 제일 중요한게 개발 환경인데요..</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.12.26</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="box">
+                    <li class="bxb tar">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>PoQueryLog분석</p>
+                                </li>
+                                <li>
+                                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia nam aspernatur, assumenda voluptate soluta ipsam eligendi porro vel ab! Sed quae nostrum, aliquam dicta maxime perferendis, fugit debitis. Suscipit, aut.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2020.12.28</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>PoQueryLog분석</p>
+                                </li>
+                                <li>
+                                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia nam aspernatur, assumenda voluptate soluta ipsam eligendi porro vel ab! Sed quae nostrum, aliquam dicta maxime perferendis, fugit debitis. Suscipit, aut.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2021.01.02</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>PoQueryLog분석</p>
+                                </li>
+                                <li>
+                                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia nam aspernatur, assumenda voluptate soluta ipsam eligendi porro vel ab! Sed quae nostrum, aliquam dicta maxime perferendis, fugit debitis. Suscipit, aut.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2021.01.06</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>PoQueryLog분석</p>
+                                </li>
+                                <li>
+                                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia nam aspernatur, assumenda voluptate soluta ipsam eligendi porro vel ab! Sed quae nostrum, aliquam dicta maxime perferendis, fugit debitis. Suscipit, aut.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2021.01.09</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>PoQueryLog분석</p>
+                                </li>
+                                <li>
+                                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia nam aspernatur, assumenda voluptate soluta ipsam eligendi porro vel ab! Sed quae nostrum, aliquam dicta maxime perferendis, fugit debitis. Suscipit, aut.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2021.01.11</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bxb tar ready">
+                        <div class="conbx">
+                            <ul>
+                                <li>
+                                    <span>[개발자 노트]</span>
+                                </li>
+                                <li>
+                                    <p>PoQueryLog분석</p>
+                                </li>
+                                <li>
+                                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia nam aspernatur, assumenda voluptate soluta ipsam eligendi porro vel ab! Sed quae nostrum, aliquam dicta maxime perferendis, fugit debitis. Suscipit, aut.</p>
+                                </li>
+                                <li>
+                                    <a href=""><i class="far fa-plus-square"></i></a>
+                                    <p>2021.01.19</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <div class="button button2">
+                    <div class="page_wrap">
+                        <a href="javascript:;" class="btnll"><img src="img/arrow_ll.gif" alt=""></a>
+                        <a href="javascript:;" class="btnlb"><img src="img/arrow_lb.gif" alt=""></a>
+                        <span class="btn1">
+                            <a href="javascript:;" class="active">1</a>
+                            <a href="javascript:;">2</a>
+                            <a href="javascript:;">3</a>
+                            <a href="javascript:;">4</a>
+                        </span>
+                        <a href="javascript:;" class="btnrb"><img src="img/arrow_rb.gif" alt=""></a>
+                        <a href="javascript:;" class="btnrr"><img src="img/arrow_rr.gif" alt=""></a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+    <footer id="footer"></footer>
+</body></html>
