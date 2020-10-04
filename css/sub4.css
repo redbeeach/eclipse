@@ -255,10 +255,10 @@ li.up {
     visibility: visible;
 }
 
-li.ready {
+/* li.ready {
     visibility: hidden;
     transform: translateY(0%);
-}
+} */
 
 @keyframes downtoup {
     0% {
@@ -332,6 +332,10 @@ li.ready {
         .co1 h2{
         font-size: 2em;
     }
+        .textbx h2 {
+        font-size: 1em;
+        font-weight: 500;
+    }
 }
 
 @media all and (max-width:500px) {
@@ -346,7 +350,7 @@ li.ready {
     }
 
     .textbx h2 {
-        font-size: 1.8em;
+        font-size: 1em;
         font-weight: 500;
     }
 

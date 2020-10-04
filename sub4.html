@@ -11,68 +11,16 @@
     <title>eclipse</title>
     <link rel="stylesheet" href="css/sub4.css">
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!--font-awesome-->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        $(document).ready(function() {
-            $("#header").load("header.html");
-            $("#footer").load("footer.html");
-            
-            var ht = $(window).height();
-            var topBox = $(".top");
-            topBox.height(ht);
-
-            $(window).on("resize", function() {
-                var ht = $(window).height();
-                topBox.height(ht);
-            });
-            // 2 컨텐츠 박스 contents section ---------------------------------------------//
-            var container = $(".section2");
-            var section = ("li");
-            var moreH = 3 * (container.outerHeight() + 50) - 50;
-            // scroll animation--
-
-            var windowheight = $(window).height();
-            var nowScroll = $(window).scrollTop();
-            var delayPosition = 100;
-
-            $(document).ready(function() {
-                floatUp();
-            });
-            $(window).on("scroll", function() {
-                floatUp();
-            });
-
-            $(window).on("resize", function() {
-                insertSectionFloat();
-            });
-
-            function floatUp() {
-                var position = $(window).scrollTop() + windowheight;
-                var readySection = $("li.ready");
-
-                readySection.each(function() {
-                    if (!$(this).hasClass("up") && $(this).data('offsetTop') < position) {
-                        $(this).addClass('up');
-                        $(this).removeClass('ready');
-                    }
-                });
-            }
-
-            function insertSectionFloat() {
-                windowheight = $(window).height();
-
-                $("li.tar").each(function() {
-                    var thisTop = $(this).offset().top;
-                    $(this).data('offsetTop', thisTop);
-                });
-            }
-
-            (function init() {
-                insertSectionFloat();
-            })();
-        });
+    $(function(){
+           $("#header").load("header.html");
+            $("#footer").load("footer.html"); 
+    });
     </script>
     <script>
         $(document).ready(function() {
@@ -238,7 +186,7 @@
         <section class="section2">
             <div class="se2">
                 <ul class="box list">
-                    <li class="bxb tar">
+                    <li class="bxb tar" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -257,7 +205,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="bxb tar ready">
+                    <li class="bxb tar" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -276,7 +224,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="bxb tar ready">
+                    <li class="bxb tar ready" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -295,7 +243,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="bxb tar ready">
+                    <li class="bxb tar ready" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -314,7 +262,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="bxb tar ready">
+                    <li class="bxb tar ready" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -333,7 +281,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="bxb tar ready">
+                    <li class="bxb tar ready" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -352,7 +300,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="bxb tar ready">
+                    <li class="bxb tar ready" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -371,7 +319,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="bxb tar ready">
+                    <li class="bxb tar ready" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -390,7 +338,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="bxb tar ready">
+                    <li class="bxb tar ready" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -409,7 +357,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="bxb tar ready">
+                    <li class="bxb tar ready" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -430,7 +378,7 @@
                     </li>
                 </ul>
                 <ul class="box">
-                    <li class="bxb tar ready">
+                    <li class="bxb tar" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -449,7 +397,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="bxb tar ready">
+                    <li class="bxb tar" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -468,7 +416,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="bxb tar ready">
+                    <li class="bxb tar" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -487,7 +435,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="bxb tar ready">
+                    <li class="bxb tar" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -508,7 +456,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="bxb tar ready">
+                    <li class="bxb tar" data-aos="fade-up">
                         <div class="conbx">
                             <ul>
                                 <li>
@@ -931,4 +879,11 @@
         </section>
     </div>
     <footer id="footer"></footer>
+    <script>
+        AOS.init({
+        offset: 400, // offset (in px) from the original trigger point
+        delay: 0, // values from 0 to 3000, with step 50ms
+        duration: 1000 // values from 0 to 3000, with step 50ms
+      });
+    </script>
 </body></html>

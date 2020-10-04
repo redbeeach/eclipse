@@ -11,7 +11,9 @@
     <title>eclipse</title>
     <link rel="stylesheet" href="css/sub5.css">
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         $(function() {
             $("#header").load("header.html");
@@ -114,7 +116,7 @@
         </div>
 
         <div class="section1">
-            <section class="tar">
+            <section class="tar" data-aos="fade-up">
                 <div class="imgbx">
                     <img src="img/01_nncompany_1_Company_introduction.jpg" alt="">
                 </div>
@@ -127,7 +129,7 @@
                     <span>일시 : 2020.10.25 (일) 10:00~12:00</span>
                 </div>
             </section>
-            <section class="tar ready">
+            <section class="tar" data-aos="fade-up">
                 <div class="imgbx">
                     <img src="img/sub5.e.png" alt="">
                 </div>
@@ -140,7 +142,7 @@
                     <span>일시 : 2020.10.10 (토) 10:30~11:30</span>
                 </div>
             </section>
-            <section class="tar ready">
+            <section class="tar" data-aos="fade-up">
                 <div class="imgbx">
                     <img src="img/sub5.e.png" alt="">
                 </div>
@@ -154,7 +156,7 @@
                     <span>일시 : 2020.10.30 (토) 10:30~11:30</span>
                 </div>
             </section>
-            <section class="tar ready">
+            <section class="tar" data-aos="fade-up">
                 <div class="imgbx">
                     <img src="img/sub5.e.png" alt="">
                 </div>
@@ -168,7 +170,7 @@
                     <span>일시 : 2020.11.15 (일) 10:30~11:30</span>
                 </div>
             </section>
-            <section class="tar ready">
+            <section class="tar" data-aos="fade-up">
                 <div class="imgbx">
                     <img src="img/sub5.e.png" alt="">
                 </div>
@@ -181,7 +183,7 @@
                     <span>일시 : 2020.11.29 (일) 10:30~11:30</span>
                 </div>
             </section>
-            <section class="tar ready">
+            <section class="tar" data-aos="fade-up">
                 <div class="imgbx">
                     <img src="img/sub5.e.png" alt="">
                 </div>
@@ -194,7 +196,7 @@
                     <span>일시 : 2020.12.13 (일) 10:30~11:30</span>
                 </div>
             </section>
-            <section class="tar ready">
+            <section class="tar" data-aos="fade-up">
                 <div class="imgbx">
                     <img src="img/sub5.e.png" alt="">
                 </div>
@@ -216,4 +218,11 @@
         </div>
     </div>
     <footer id="footer"></footer>
+    <script>
+        AOS.init({
+            offset: 400, // offset (in px) from the original trigger point
+            delay: 0, // values from 0 to 3000, with step 50ms
+            duration: 1000 // values from 0 to 3000, with step 50ms
+        });
+    </script>
 </body></html>
